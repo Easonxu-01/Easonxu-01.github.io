@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://xuzikun.com/2022/11/13/helloworld/</loc>
+    
+    <lastmod>2022-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/resources/index.html</loc>
+    
+    <lastmod>2022-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/about/index.html</loc>
+    
+    <lastmod>2022-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/tags/index.html</loc>
+    
+    <lastmod>2022-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/categories/index.html</loc>
+    
+    <lastmod>2022-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>http://xuzikun.com/</loc>
+    <lastmod>2022-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
+    <lastmod>2022-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2022-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
