@@ -9,7 +9,7 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Sun, 13 Nov 2022 10:02:33 GMT</pubDate>
+    <pubDate>Sun, 13 Nov 2022 10:59:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -29,6 +29,10 @@
       <content:encoded><![CDATA[<h1 id="欢迎你！"><a href="#欢迎你！" class="headerlink" title="欢迎你！"></a>欢迎你！</h1><p>虽然现在这里还还<strong style="color:#00b0f0;">冷冷清清</strong>，</p><p>但是之后我会建起一片<strong style="color:#00b050;">茂密的森林</strong>！</p>]]></content:encoded>
       
       
+      <category domain="http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/">日常</category>
+      
+      
+      <category domain="http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/">欢迎</category>
       
       
       <comments>http://xuzikun.com/2022/11/13/helloworld/#disqus_thread</comments>
