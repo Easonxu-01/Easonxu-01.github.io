@@ -120,17 +120,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">2</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -161,123 +161,6 @@
 
           <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/11/14/lidar%203D%20detection/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="小徐">
-      <meta itemprop="description" content="今天珍惜今天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小徐的Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/14/lidar%203D%20detection/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-14 10:29:21 / 修改时间：15:40:09" itemprop="dateCreated datePublished" datetime="2022-11-14T10:29:21+08:00">2022-11-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/3D-Detection/" itemprop="url" rel="index"><span itemprop="name">3D-Detection</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记"><a href="#《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记" class="headerlink" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记"></a>《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记</h1><p>[TOC]</p>
-<h2 id="Section1-引言"><a href="#Section1-引言" class="headerlink" title="Section1 引言"></a><strong>Section1 引言</strong></h2><p>与摄像头相比，LiDAR不受光照条件的限制，而且以无隐私的方式捕获数据，这使得它们在技术和道德方面都非常适合复杂的户外环境。这篇文章关注的是：<strong>基于LiDAR的3D目标检测器（仅使用LiDAR传感器数据，而不依赖任何其他传感器的数据）</strong></p>
-<p>针对点云中的3D目标检测及其在自动驾驶中的应用已有大量研究，其他综述类文献侧重于<strong>自动驾驶应用中的目标检测和语义分割，以及使用多模态技术的深度学习网络。</strong></p>
-<p><em>与前述工作相比，该综述的贡献总结如下：</em></p>
-<p><em>1.文章介绍了一个<strong>通用操作流程</strong>，为<strong>结构化分类</strong>奠定基础，便于比较并显示<strong>各检测器间的相似之处和不同之处。</strong></em></p>
-<p><em>2.文章提供了详尽的<strong>最新3D目标检测器列表</strong>。侧重于描述每种目标检测器的<strong>优缺点</strong>和其在<strong>操作流程上的特殊性</strong>，以确保检测结果的高效性和有效性。</em></p>
-<p>3.文章最终的结论确定了未来新的3D目标检测器设计中<strong>应该采用或避免的一些关键特征</strong>。</p>
-<h2 id="Section-2-背景"><a href="#Section-2-背景" class="headerlink" title="Section 2 背景"></a><strong>Section 2 背景</strong></h2><h3 id="2-1-激光雷达和点云"><a href="#2-1-激光雷达和点云" class="headerlink" title="2.1 激光雷达和点云"></a>2.1 激光雷达和点云</h3><p>LiDAR的最终输出是一组点，称为点云。每个点通常是一个<strong>四维向量编码</strong>，包含3D坐标[x,y,z]和激光反射强度r，激光反射强度会反应有关物体反射表面的信息。某些LiDAR会用<strong>五维向量</strong>对每个点进行编码，增加一个值e——对应于<strong>激光脉冲超出其标准宽度的伸长率</strong>。</p>
-<p>LiDAR坐标系中每个点的3D坐标计算如下：</p>
-<p>$$ x &#x3D; d * cos(\omega) * cos(\phi) $$</p>
-<p>$$ y &#x3D; d * cos(\omega) * sin(\phi) $$</p>
-<p>$$ z &#x3D; d * sin(\omega)  $$</p>
-<p>其中：</p>
-<p>d 指的是测量距离</p>
-<p>φ 指绕Z轴的偏航角</p>
-<p>ω 指每个激光发射器的固定俯仰角</p>
-<h3 id="2-2-3D-BBox-编码"><a href="#2-2-3D-BBox-编码" class="headerlink" title="2.2 3D BBox 编码"></a>2.2 3D BBox 编码</h3><p><strong>3D BBox(A three-dimensional bounding box，三维边界框)用于定义目标在3D空间中的位置、大小和方向。</strong>3D BBox具有适当的尺寸和方向来与目标紧密绑定。如果目标被部分遮挡或截断，3D BBox调整适当的大小和位置以表示完整目标的大小。对自动驾驶而言，<strong>会假设所有物体都在地面上</strong>，那么仅需要对<strong>偏航角</strong>进行预测。<strong>3D BBox由其3D中心坐标[x,y,z]、尺寸[l,w,h]和偏航方向θ进行编码。</strong></p>
-<h2 id="Section-3-操作流程"><a href="#Section-3-操作流程" class="headerlink" title="Section 3 操作流程"></a><strong>Section 3 操作流程</strong></h2><p>文章提出一个基于LiDAR的3D目标检测器共通的操作流程，<strong>由三个不同的模块组成：</strong></p>
-<p><strong>1.LiDAR</strong> <strong>SDR</strong>（LiDAR Sensor Data Representation LiDAR数据的表达形式）<strong>、</strong></p>
-<p><strong>2.特征提取（Feature extraction）、</strong></p>
-<p><strong>3.核心目标检测</strong>。</p>
-<p>![1](D:\Blog\source_posts\lidar 3D detection\《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记\images\1.bmp)</p>
-<p>如上图所示，</p>
-<ol>
-<li>在<strong>LiDAR SDR</strong>中，输入的LiDAR点云数据被转换为<span style="background:#FFFFBB;">结构化且紧凑</span>的表达形式；</li>
-<li>在<strong>特征提取</strong>中，上述表达形式可被提取出<span style="background:#FFFFBB;">丰富的高维特征</span>；</li>
-<li><strong>核心目标检测</strong>模块则负责处理<span style="background:#FFFFBB;">学习到的高维特征，输出目标类别、位置、大小的预测结果</span>。</li>
-</ol>
-<p>核心目标检测模块由两个阶段组成：检测器网络（Detector Networks）和预测细化（Prediction Reﬁnement）。检测器网络接收来自特征提取模块的高维特征作为输入，并输出关于目标的类别、位置和大小的 3D BBox候选框。预测细化对检测器网络中的3D BBox进行重新采样，提取局部特征并对其进行处理，以输出对目标位置、大小和类别最终更准确的预测。</p>
-<p>在核心目标检测模块中仅使用检测器网络的3D目标检测器被称为一阶段（One-stage）检测器，检测器网络和预测细化阶段均被使用的检测器则被称为二阶段（two-stage）检测器。一阶段<strong>检测器在推理时速度快但精度稍逊，二阶段检测器精度高但速度慢。</strong></p>
-<p>更详细的介绍如下</p>
-<h3 id="3-1-LiDAR-SDR"><a href="#3-1-LiDAR-SDR" class="headerlink" title="3.1 LiDAR SDR"></a>3.1 LiDAR SDR</h3><p>输入的LiDAR数据以点云形式来表示（可来自一个或多个LiDAR传感器，根据车上安装的数量而定）。但是由于点云非结构化和非固定大小的特征，它不能直接被3D目标检测器处理，必须通过某种表达形式将其编码为更紧凑的结构，目前主要有以下五种表达形式：<strong>基于点的（point-based）、基于体素的（voxel-based）、基于支柱特征的（pillar-based）、基于投影的（projection-based）和基于图的（graph-based）</strong>。最新的检测器架构中还会用两种不同的表达形式，称之为双重表达类别。</p>
-<h3 id="3-2-特征提取"><a href="#3-2-特征提取" class="headerlink" title="3.2 特征提取"></a>3.2 特征提取</h3><h3 id="3-3-核心目标检测"><a href="#3-3-核心目标检测" class="headerlink" title="3.3 核心目标检测"></a>3.3 核心目标检测</h3><h2 id="Section4-各类检测器的分析综述"><a href="#Section4-各类检测器的分析综述" class="headerlink" title="Section4 各类检测器的分析综述"></a>Section4 各类检测器的分析综述</h2><h2 id="Section-5-数据集和评估指标"><a href="#Section-5-数据集和评估指标" class="headerlink" title="Section 5 数据集和评估指标"></a>Section 5 数据集和评估指标</h2><h2 id="Section-6-讨论"><a href="#Section-6-讨论" class="headerlink" title="Section 6 讨论"></a>Section 6 讨论</h2><h2 id="Section-7-未来研究趋势和未解决问题"><a href="#Section-7-未来研究趋势和未解决问题" class="headerlink" title="Section 7.未来研究趋势和未解决问题"></a>Section 7.未来研究趋势和未解决问题</h2><h2 id="Section-8-结论"><a href="#Section-8-结论" class="headerlink" title="Section 8 结论"></a>Section 8 结论</h2>
-      
-    </div>
-
-    
-    
-    
-
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
       
   
   
@@ -433,20 +316,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -526,7 +409,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.4k字</span>
+  <span class="post-count">博客全站共30字</span>
 </div>
         
 <div class="busuanzi-count">
