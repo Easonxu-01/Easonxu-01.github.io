@@ -23,30 +23,58 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="今天珍惜今天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小徐的Blog">
-<meta property="og:url" content="http://xuzikun.com/index.html">
+  <meta name="description" content="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记[TOC] Section1 引言与摄像头相比，LiDAR不受光照条件的限制，而且以无隐私的方式捕获">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记">
+<meta property="og:url" content="http://xuzikun.com/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="今天珍惜今天">
+<meta property="og:description" content="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记[TOC] Section1 引言与摄像头相比，LiDAR不受光照条件的限制，而且以无隐私的方式捕获">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211142241317.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211142340688.jpeg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151007755.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151007721.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151007228.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151005540.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150922530.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150959620.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150948386.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150941360.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151014636.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151014315.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151014973.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151015670.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151015778.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151016178.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151016753.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151016278.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151017640.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150949345.jpeg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150959707.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150959836.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150950791.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151004986.webp">
+<meta property="article:published_time" content="2022-11-15T02:20:04.808Z">
+<meta property="article:modified_time" content="2022-11-15T02:19:28.194Z">
 <meta property="article:author" content="小徐">
+<meta property="article:tag" content="Lidar,3D-Detection">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211142241317.png">
 
-<link rel="canonical" href="http://xuzikun.com/">
+<link rel="canonical" href="http://xuzikun.com/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>小徐的Blog</title>
+  <title>《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记 | 小徐的Blog</title>
   
 
 
@@ -160,106 +188,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/11/13/helloworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="小徐">
-      <meta itemprop="description" content="今天珍惜今天">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小徐的Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/13/helloworld/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <i class="fa fa-thumb-tack"></i>
-            <font color=7D26CD>置顶</font>
-            <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-13 16:51:26" itemprop="dateCreated datePublished" datetime="2022-11-13T16:51:26+08:00">2022-11-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-14 23:15:17" itemprop="dateModified" datetime="2022-11-14T23:15:17+08:00">2022-11-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="欢迎你！"><a href="#欢迎你！" class="headerlink" title="欢迎你！"></a>欢迎你！</h1><p>虽然现在这里还是<strong style="color:#00b0f0;">冷冷清清</strong>，</p>
-<p>但是之后我会建起一片<strong style="color:#00b050;">茂密的森林</strong>！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -275,10 +207,9 @@
       <meta itemprop="name" content="小徐的Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记
+        </h1>
 
         <div class="post-meta">
 
@@ -303,6 +234,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -313,7 +251,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记"><a href="#《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记" class="headerlink" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记"></a>《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记</h1><p>[TOC]</p>
+        <h1 id="《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记"><a href="#《A-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving》-（《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》-）读书笔记" class="headerlink" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记"></a>《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记</h1><p>[TOC]</p>
 <h2 id="Section1-引言"><a href="#Section1-引言" class="headerlink" title="Section1 引言"></a>Section1 引言</h2><p>与摄像头相比，LiDAR不受光照条件的限制，而且以无隐私的方式捕获数据，这使得它们在技术和道德方面都非常适合复杂的户外环境。这篇文章关注的是：<strong>基于LiDAR的3D目标检测器（仅使用LiDAR传感器数据，而不依赖任何其他传感器的数据）</strong></p>
 <p>针对点云中的3D目标检测及其在自动驾驶中的应用已有大量研究，其他综述类文献侧重于<strong>自动驾驶应用中的目标检测和语义分割，以及使用多模态技术的深度学习网络。</strong></p>
 <p><em>与前述工作相比，该综述的贡献总结如下：</em></p>
@@ -538,7 +476,6 @@
 <h2 id="Section-8-结论"><a href="#Section-8-结论" class="headerlink" title="Section 8 结论"></a>Section 8 结论</h2><p>在过去几年中，由于深度学习架构、可用LiDAR的进步及其在自动驾驶商业应用中的潜力。仅使用LiDAR点云数据的3D目标检测已成为一个活跃的研究领域。</p>
 <p>本文对基于LiDAR的3D目标检测器的操作流程进行了分析，并通过统一的框架展示和讨论了各操作模块，以建立各检测器间的共同点。检测器通过上述统一框架进行分类和单独呈现。此外，根据自动驾驶应用的三个开放数据集的标准和评估指标来研究检测器性能。总结了研究发现和构成未来工作研究潜力的关键要素。这项工作是目前文献中最完整的，旨在为每种方法的优缺点提供有用的见解。</p>
 
-      
     </div>
 
     
@@ -546,9 +483,94 @@
     
 
     
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------我是底线<i class="fa fa-paw"></i>欢迎你来这里-------------</div>
+    
+</div>
+      </div>
+    
+        <div class="reward-container">
+  <div>原创技�?分享，您的支持将鼓励我继�?创作</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="小徐 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>小徐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xuzikun.com/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记">http://xuzikun.com/2022/11/15/《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/Lidar-3D-Detection/" rel="tag"># Lidar,3D-Detection</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/13/helloworld/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
@@ -569,12 +591,14 @@
 })();
 </script>
 
-  
-
-
 
           </div>
           
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzYxNi8zNDA4MA=="></div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -621,6 +645,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8AA-comprehensive-survey-of-LIDAR-based-3D-object-detection-methods-with-deep-learning-for-autonomous-driving%E3%80%8B-%EF%BC%88%E3%80%8A%E5%9F%BA%E4%BA%8ELIDAR%E7%9A%84%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A03D%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E7%9A%84%E7%BB%BC%E5%90%88%E8%B0%83%E6%9F%A5%E3%80%8B-%EF%BC%89%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》 （《基于LIDAR的自动驾驶深度学习3D物体检测方法的综合调查》   ）读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Section1-%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">Section1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-2-%E8%83%8C%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">Section 2 背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E5%92%8C%E7%82%B9%E4%BA%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 激光雷达和点云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3D-BBox-%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 3D BBox 编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-3-%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">Section 3 操作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-LiDAR-SDR"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 LiDAR SDR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-Point-based"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">3.1.1 Point-based</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Voxel-based-%E4%BD%93%E7%B4%A0%E5%8C%96"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">3.1.2 Voxel-based 体素化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-Pillar-based%E5%9F%BA%E4%BA%8E%E6%9F%B1%E7%9A%84"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3.1.3 Pillar-based基于柱的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-Projection-based-%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%9A%84"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">3.1.4 Projection-based 基于投影的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-Graph-based-%E5%9F%BA%E4%BA%8E%E5%9B%BE%E5%83%8F%E7%9A%84"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">3.1.5. Graph-based 基于图像的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-3D-Backbone-networks"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">3.2.1. 3D Backbone networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-2D-Backbone-networks"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">3.2.2 2D Backbone networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 核心目标检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-%E6%A3%80%E6%B5%8B%E5%99%A8%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.3.1 检测器网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E9%A2%84%E6%B5%8B%E7%BB%86%E5%8C%96"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">3.3.2 预测细化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section4-%E5%90%84%E7%B1%BB%E6%A3%80%E6%B5%8B%E5%99%A8%E7%9A%84%E5%88%86%E6%9E%90%E7%BB%BC%E8%BF%B0"><span class="nav-number">1.4.</span> <span class="nav-text">Section4 各类检测器的分析综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-5-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.</span> <span class="nav-text">Section 5 数据集和评估指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-KITTI-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 KITTI 数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-NuScenes-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 NuScenes 数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Waymo-%E5%BC%80%E6%94%BE%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 Waymo 开放数据集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-6-%E8%AE%A8%E8%AE%BA"><span class="nav-number">1.6.</span> <span class="nav-text">Section 6 讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Voxel-based-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 Voxel-based 目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Pillar-based-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 Pillar-based 目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Projection-in-BEV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3. Projection in BEV 目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Projection-in-FV%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4. Projection in FV目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-Point-based-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.5.</span> <span class="nav-text">6.5. Point-based 目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-Graph-based-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.6 Graph-based 目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-%E5%8F%8C%E9%87%8D%E7%82%B9%E4%BA%91%E8%A1%A8%E8%BE%BE%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="nav-number">1.6.7.</span> <span class="nav-text">6.7 双重点云表达目标检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">1.6.8.</span> <span class="nav-text">6.8 注意力机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-7-%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E8%B6%8B%E5%8A%BF%E5%92%8C%E6%9C%AA%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">Section 7.未来研究趋势和未解决问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E5%9C%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 在嵌入式系统中的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E8%BF%88%E5%90%91%E9%AB%98%E6%95%88%E7%9A%84%E6%B7%B7%E5%90%88%E7%BD%91%E7%BB%9C"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 迈向高效的混合网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-LiDAR-%E7%82%B9%E4%BA%91%E7%9A%84%E7%A8%80%E7%96%8F%E6%80%A7"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 LiDAR 点云的稀疏性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.7.4.</span> <span class="nav-text">7.4 自监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-%E5%A4%8D%E6%9D%82%E7%8E%B0%E5%AE%9E%E5%9C%BA%E6%99%AF%E7%9A%84%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0"><span class="nav-number">1.7.5.</span> <span class="nav-text">7.5 复杂现实场景的性能评估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-8-%E7%BB%93%E8%AE%BA"><span class="nav-number">1.8.</span> <span class="nav-text">Section 8 结论</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -806,6 +831,21 @@ $(document).ready(function() {
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 
   
