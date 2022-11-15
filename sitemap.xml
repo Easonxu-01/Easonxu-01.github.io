@@ -74,14 +74,14 @@
 
   
   <url>
-    <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
+    <loc>http://xuzikun.com/tags/DL-3D-Detection/</loc>
     <lastmod>2022-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/DL-3D-Detection/</loc>
+    <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
     <lastmod>2022-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -97,21 +97,14 @@
 
   
   <url>
-    <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2022-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuzikun.com/categories/3D-Dtection/</loc>
-    <lastmod>2022-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://xuzikun.com/categories/3D-Detection/</loc>
+    <lastmod>2022-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2022-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
