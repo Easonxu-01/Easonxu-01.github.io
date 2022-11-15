@@ -23,27 +23,27 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DETR 论文精读 (eccv20 Transfomer+ 目标检测 ) [^9000+stars，very good]:  简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based 的方法，还是">
+  <meta name="description" content="DETR 论文精读 (eccv20 Transfomer+ 目标检测 ) [^9000+stars，very good]:  简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based 的方法，还">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DERT 论文精读">
 <meta property="og:url" content="http://xuzikun.com/2022/11/15/DERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="DETR 论文精读 (eccv20 Transfomer+ 目标检测 ) [^9000+stars，very good]:  简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based 的方法，还是">
+<meta property="og:description" content="DETR 论文精读 (eccv20 Transfomer+ 目标检测 ) [^9000+stars，very good]:  简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based 的方法，还">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115140514914.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115144013312.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115144756426.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145409770.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151158907.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151708839.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151253299.png">
 <meta property="article:published_time" content="2022-11-15T09:09:39.260Z">
-<meta property="article:modified_time" content="2022-11-15T09:20:10.990Z">
+<meta property="article:modified_time" content="2022-11-15T11:26:14.978Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="DL,3D-Detection">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115140514914.png">
+<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
 
 <link rel="canonical" href="http://xuzikun.com/2022/11/15/DERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
@@ -205,7 +205,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-15 17:09:39 / 修改时间：17:20:10" itemprop="dateCreated datePublished" datetime="2022-11-15T17:09:39+08:00">2022-11-15</time>
+              <time title="创建时间：2022-11-15 17:09:39 / 修改时间：19:26:14" itemprop="dateCreated datePublished" datetime="2022-11-15T17:09:39+08:00">2022-11-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +235,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="detr 论文精读 eccv20-transfomer 目标检测">DETR 论文精读 (eccv20
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer" />
+<h1 id="detr 论文精读 eccv20-transfomer 目标检测">DETR 论文精读 (eccv20
 Transfomer+ 目标检测 )</h1>
 <p>[^9000+stars，very good]:</p>
 <p> 简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum
@@ -283,7 +284,7 @@ duplicate
 predictions, 所以需要加入 nms 和 anchor 进行优化 )，最后整个架构变得十分复杂，难以优化和调参 </p>
 <p>3、端到端的思想已经在别的很多任务里大范围使用，而且使任务更加简单好用。我们不要先验知识，就是要用一个端到端网络 </p>
 <p><strong>detr 流程（训练）：</strong></p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115140514914.png" alt="image-20221115140514914" style="zoom: 67%;" /></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png" alt="image-20221115140514914" style="zoom: 67%;" /></p>
 <p>1、CNN 提取特征 </p>
 <p>2、特征拉直，送到 encoder-decoder 中，encoder 作用：进一步学习全局信息，为接下来的 decoder，也就是最后出预测框做铺垫。（直观的理解是，使用了 encoder-decoder 之后，图片里面每一个点（特征）和其他的点（特征）就有交互了，这样他就知道了图片中物体的分布，最终的效果就是同一个物体只应该出一个框框，而不是多个。总之，全局的特征有利于移除多余的框框）</p>
 <p>3、decoder 生成框的输出，当你有了图像特征之后，还会有一个 object
@@ -333,14 +334,14 @@ assignment 函数 </p>
 <p> 最后就是遍历所有的框框，用得到的 100 个框和 GT 的框去算最后的 loss，然后把计算得到的 loss 放到 cost
 matrix 里面就可以了。然后把 cost
 matrix 带入到匈牙利方法里面，就可以得到二分图匹配的结果。</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115144013312.png" alt="image-20221115144013312" style="zoom: 33%;" /></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png" alt="image-20221115144013312" style="zoom: 33%;" /></p>
 <p> 作者实际写代码的时候做了两个改动：</p>
 <p> 第一个是把第一项的 log 去掉了，以往的目标检测问题往往会带上 log 进行计算，作者这里是为了让前后两部分 loss 有接近的取值空间。</p>
 <p> 第二个改动就是第二项采用的不是 L_1 的 loss 而是 L_2 的 loss。这样做是因为 L_1 的 loss 和出框的大小有关系，框越大最后得到的 loss 就容易越大。但是 DETR 用了 transfomer 这样的框架，对大物体很友好，所以特别容易给出大的框框，得到大大的 loss，不易于优化。</p>
 <p>detr 主体网络框架（图 2：图 1 的升级版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115144756426.png" alt="image-20221115144756426" style="zoom: 80%;" /></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png" alt="image-20221115144756426" style="zoom: 80%;" /></p>
 <p> 真代码（简化版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145409770.png" alt="image-20221115145409770" style="zoom: 67%;" /></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png" alt="image-20221115145409770" style="zoom: 67%;" /></p>
 <h2 id="experiments">Experiments</h2>
 <p> 表 1detr 和 faster RCNN 的对比 </p>
 <p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png" alt="image-20221115145833980" style="zoom:67%;" /></p>
