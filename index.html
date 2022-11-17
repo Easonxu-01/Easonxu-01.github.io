@@ -390,7 +390,7 @@ mjx-container[display="true"] + br {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/17/Pointnet(++)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/11/17/Pointnet(++)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Pointnet(++) 学习笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -403,7 +403,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-17 13:47:30 / 修改时间：13:48:09" itemprop="dateCreated datePublished" datetime="2022-11-17T13:47:30+08:00">2022-11-17</time>
+              <time title="创建时间：2022-11-17 13:47:30 / 修改时间：14:11:47" itemprop="dateCreated datePublished" datetime="2022-11-17T13:47:30+08:00">2022-11-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -440,6 +440,8 @@ feature）、分割（point-wise feature）等。</p>
 invariances）。</p>
 <p>网络的关键部分是使用了单个对称函数：Max Pooling。</p>
 <p>点云的输入格式每个点都独立变换，所以很容易应用刚性或仿射变换。文中添加一个依赖于数据的空间转换器网络，该网络尝试在 PointNet 处理数据之前将数据规范化，从而进一步改进结果。</p>
+<p>（这里就是指后文架构中的 T-Net）</p>
+<p>PointNet 对输入点的小扰动以及通过点插入（异常值）或删除（丢失数据）导致的损坏具有高度鲁棒性。（这一点原因会在后面分析）</p>
 <h3 id="related-work">Related Work</h3>
 <p>分别介绍了点云特征、在 3D 数据上的深度学习的方法、在无序数据上的深度学习的方法。</p>
 <p>点云或者 mesh，大多数研究人员都是将其转化成 3D 体素或者多视图来做特征学习的，这其中的工作包括了 VoxelNet,
@@ -501,6 +503,8 @@ pooling 操作来聚合点的特征，得到最终的全局特征。</li>
 <p><strong>a. max-pooling。作为对称函数（Symmetry Function
 ）来解决无序性</strong></p>
 <p>为了保证网络对输入序列的不变性，本文采用了 maxpooling 作为对称函数，也就是说，无论输入的顺序是怎样的，maxpooling 都会得到相同的结果。</p>
+<p>（对称函数是离散数学中的一个概念。）</p>
+<p>作者希望对变换后的元素应用对称函数，从而估计得到一个定义在点集上的一般函数：</p>
 <p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221117104356332.png" alt="image-20221117104356332" style="zoom:67%;" /></p>
 <p>我们的目标：左边 f 是我们的目标，右边 g
 是我们期望设计的对称函数。由上公式可以看出，基本思路就是对各个元素（即点云中的各个点）使用
@@ -1542,7 +1546,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.9k字</span>
+  <span class="post-count">博客全站共21k字</span>
 </div>
         
 <div class="busuanzi-count">
