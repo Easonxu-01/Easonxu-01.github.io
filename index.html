@@ -401,10 +401,16 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-17 13:47:30 / 修改时间：14:11:47" itemprop="dateCreated datePublished" datetime="2022-11-17T13:47:30+08:00">2022-11-17</time>
+              <time title="创建时间：2022-11-17 13:47:30" itemprop="dateCreated datePublished" datetime="2022-11-17T13:47:30+08:00">2022-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-18 10:54:33" itemprop="dateModified" datetime="2022-11-18T10:54:33+08:00">2022-11-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -436,6 +442,8 @@ mjx-container[display="true"] + br {
 <p>PointNet 所作的事情就是：对点云做特征学习，并将学习到的特征去做不同的应用：分类（shape-wise
 feature）、分割（point-wise feature）等。</p>
 <p>PointNet 之所以影响力巨大，就是因为它为点云处理提供了一个简单、高效、强大的特征提取器（encoder），几乎可以应用到点云处理的各个应用中，其地位类似于图像领域的 AlexNet。</p>
+<p><strong style="color:#ffff00;">（当然，Alexnet 带来的影响过了几年人们又觉得有一部分可能是不太好的，但是探索开创的意义重大）</strong></p>
+<h3 id="introduction">Introduction</h3>
 <p>典型的卷积架构需要高度规则的数据格式，以便执行权重共享和其他内核优化的工作。但是这种数据表示转换使生成的数据变得不必要的庞大，并且会掩盖数据的自然不变量（natural
 invariances）。</p>
 <p>网络的关键部分是使用了单个对称函数：Max Pooling。</p>
@@ -854,7 +862,7 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-17 14:00:48" itemprop="dateModified" datetime="2022-11-17T14:00:48+08:00">2022-11-17</time>
+                <time title="修改时间：2022-11-18 10:56:17" itemprop="dateModified" datetime="2022-11-18T10:56:17+08:00">2022-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -957,8 +965,12 @@ voxelization）。</strong></p>
 <p>以上方式同样适用于体素。假设非零体素的总数为 T，其中(T &gt;
 V)，则随机对体素进行子采样，否则，如果(T &lt; V)，则对剩余的 (V - T)
 缓冲区索引。</p>
+<p><strong style="color:#00b050;">这里推荐去看原文，英文更容易理解一些。意思就是体素化的过程不仅能对点做一遍，还可以对体素再做一遍</strong></p>
+<p>在固定体素化过程中，构建了一个固定的缓冲区大小，但是在点和体素丢失的时候也会丢失一定的信息。</p>
 <p><strong>动态体素化：</strong>在动态体素化中，点到体素的分配策略类似于固定体素化的分组阶段，其中所有点都分配给体素。</p>
 <p>然而，与固定体素化不同的是，没有采样阶段，因此不会预先确定 3D 空间中非零体素的最大数量 V 和每个体素的最大点数 O，这两个数字而是动态变化的。这会产生一个 <strong> 动态缓冲区 </strong> 且<strong>不会丢失任何信息</strong>，因为没有体素或点被丢弃。</p>
+<p><strong style="color:#00b050;">即把点都收过来了，也没有做降采样</strong></p>
+<p>点到体素的双向关系表示如下：</p>
 <figure>
 <img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151040185.png" alt="image-20221115100705122">
 <figcaption aria-hidden="true">image-20221115100705122</figcaption>
@@ -985,6 +997,8 @@ Feature Encoding，VFE）模块，如图 3 所示。</p>
 <center>
 VoxelNet 的 VFE 模块框图
 </center>
+<p>从这张图可以看到的流程是：采样到的点首先进一个 MLP，然后输出一组基于点的特征；然后作者采用了一种特征连接策略：将其中一部分特征经过一个最大池化层，得到局部聚集特征，然后再和没有处理的特征连接起来；这样连接 n 层，最后得到 C 维的基于体素的特征。</p>
+<p><strong style="color:#00b050;">A-loam 里面采用的就是基于体素的方法。</strong></p>
 <h4 id="pillar-based 基于柱的"><strong>3.1.3
 Pillar-based 基于柱的</strong></h4>
 <p>根据《Pointpillars: Fast encoders for obPject detection from point
@@ -1005,6 +1019,9 @@ projection，FV）</strong>：点云被投影到一个球形或圆柱形表面�
 ，BEV）</strong>：通过将点分配给相应的网格（一个网格可能包含多个点），将点云投影到具有一定网格分辨率的λ米的 BEV 地图中。</p>
 <p>与前视图相似，BEV 图像的通道数决定了初始特征的数量。BEV 图像中的网格 / 像素通常是手工或根据预定特征进行编码，例如沿
 Z 轴固定大小分区的二进制占用编码和网格内点的统计值。</p>
+<p><strong style="color:#00b050;">Lego-loam 采用的就是种方式，FV，点云被投影到一个圆柱形表面，预定的特征是到传感器的距离</strong></p>
+<h4 id="graph-based- 基于图像的"><strong>3.1.5. Graph-based
+基于图像的</strong></h4>
 <p>在 Graph-based 的表达形式中，<strong>点云被转换为图形 </strong>。<strong> 点被视为节点 </strong>，<strong> 一个点与其位于固定半径 d 内的其他点相连后被视为边。</strong></p>
 <p>在原始点云的基础上使用该方法来计算非常低效，因此 <strong> 常用体素化后的采样点云来代替原始点云</strong>。</p>
 <p>每个节点的初始特征的计算方式与中类似。首先，选择节点周围半径 d 内的一组点。通过多层感知器 (MLP) 处理其规范坐标和反射强度值，之后通过 Max-pooling 操作计算节点的初始特征向量。</p>
@@ -1028,10 +1045,10 @@ SpConv)和 3D 子流形稀疏 (3D Sub-SpConv) 卷积网络模型。无独有偶�
 for voting in online point cloud object detection》的研究者演示了一种在
 3D 数据中应用滑动窗口（sliding window）的有效投票方案（voting
 scheme)。</p>
-<p>[^ 其实在 Transfomer 的论文里面，作者也提到了这样的背景，就是 CNN 计算负载过大，人们想了很多办法来优化它，比如 3D 稀疏(3D
+<p><strong style="color:#00b050;">其实在 Transfomer 的论文里面，作者也提到了这样的背景，就是 CNN 计算负载过大，人们想了很多办法来优化它，比如 3D 稀疏(3D
 SpConv)和 3D 子流形稀疏(3D
 Sub-SpConv)卷积网络模型，但是 transfomer 的作者最后骄傲的说，虽然做了这些改进，但是问题还是没有解决，但是 transfomer 就没有这个问题。之后可以去看一下基于 transfomer
-的 DERT]:</p>
+的 DERT </strong></p>
 <p>考虑到 LiDAR 点云的 <strong> 稀疏性</strong>（即大约 90% 的体素都没有点），Vote3
 Deep 使用了 <strong> 投票方案</strong>（voting scheme），而 SECOND 使用了 3D
 SpConv 和 3D SubSpConv 来构建基于 3D sparse
@@ -1546,7 +1563,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21k字</span>
+  <span class="post-count">博客全站共21.3k字</span>
 </div>
         
 <div class="busuanzi-count">

@@ -55,7 +55,7 @@
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211150950791.webp">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151004986.webp">
 <meta property="article:published_time" content="2022-11-15T02:20:04.808Z">
-<meta property="article:modified_time" content="2022-11-17T06:00:48.018Z">
+<meta property="article:modified_time" content="2022-11-18T02:56:17.502Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="3D-Detection">
 <meta property="article:tag" content="Lidar">
@@ -340,7 +340,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-17 14:00:48" itemprop="dateModified" datetime="2022-11-17T14:00:48+08:00">2022-11-17</time>
+                <time title="修改时间：2022-11-18 10:56:17" itemprop="dateModified" datetime="2022-11-18T10:56:17+08:00">2022-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -450,8 +450,12 @@ voxelization）。</strong></p>
 <p>以上方式同样适用于体素。假设非零体素的总数为 T，其中(T &gt;
 V)，则随机对体素进行子采样，否则，如果(T &lt; V)，则对剩余的 (V - T)
 缓冲区索引。</p>
+<p><strong style="color:#00b050;">这里推荐去看原文，英文更容易理解一些。意思就是体素化的过程不仅能对点做一遍，还可以对体素再做一遍</strong></p>
+<p>在固定体素化过程中，构建了一个固定的缓冲区大小，但是在点和体素丢失的时候也会丢失一定的信息。</p>
 <p><strong>动态体素化：</strong>在动态体素化中，点到体素的分配策略类似于固定体素化的分组阶段，其中所有点都分配给体素。</p>
 <p>然而，与固定体素化不同的是，没有采样阶段，因此不会预先确定 3D 空间中非零体素的最大数量 V 和每个体素的最大点数 O，这两个数字而是动态变化的。这会产生一个 <strong> 动态缓冲区 </strong> 且<strong>不会丢失任何信息</strong>，因为没有体素或点被丢弃。</p>
+<p><strong style="color:#00b050;">即把点都收过来了，也没有做降采样</strong></p>
+<p>点到体素的双向关系表示如下：</p>
 <figure>
 <img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151040185.png" alt="image-20221115100705122">
 <figcaption aria-hidden="true">image-20221115100705122</figcaption>
@@ -478,6 +482,8 @@ Feature Encoding，VFE）模块，如图 3 所示。</p>
 <center>
 VoxelNet 的 VFE 模块框图
 </center>
+<p>从这张图可以看到的流程是：采样到的点首先进一个 MLP，然后输出一组基于点的特征；然后作者采用了一种特征连接策略：将其中一部分特征经过一个最大池化层，得到局部聚集特征，然后再和没有处理的特征连接起来；这样连接 n 层，最后得到 C 维的基于体素的特征。</p>
+<p><strong style="color:#00b050;">A-loam 里面采用的就是基于体素的方法。</strong></p>
 <h4 id="pillar-based 基于柱的"><strong>3.1.3
 Pillar-based 基于柱的</strong></h4>
 <p>根据《Pointpillars: Fast encoders for obPject detection from point
@@ -498,6 +504,9 @@ projection，FV）</strong>：点云被投影到一个球形或圆柱形表面�
 ，BEV）</strong>：通过将点分配给相应的网格（一个网格可能包含多个点），将点云投影到具有一定网格分辨率的λ米的 BEV 地图中。</p>
 <p>与前视图相似，BEV 图像的通道数决定了初始特征的数量。BEV 图像中的网格 / 像素通常是手工或根据预定特征进行编码，例如沿
 Z 轴固定大小分区的二进制占用编码和网格内点的统计值。</p>
+<p><strong style="color:#00b050;">Lego-loam 采用的就是种方式，FV，点云被投影到一个圆柱形表面，预定的特征是到传感器的距离</strong></p>
+<h4 id="graph-based- 基于图像的"><strong>3.1.5. Graph-based
+基于图像的</strong></h4>
 <p>在 Graph-based 的表达形式中，<strong>点云被转换为图形 </strong>。<strong> 点被视为节点 </strong>，<strong> 一个点与其位于固定半径 d 内的其他点相连后被视为边。</strong></p>
 <p>在原始点云的基础上使用该方法来计算非常低效，因此 <strong> 常用体素化后的采样点云来代替原始点云</strong>。</p>
 <p>每个节点的初始特征的计算方式与中类似。首先，选择节点周围半径 d 内的一组点。通过多层感知器 (MLP) 处理其规范坐标和反射强度值，之后通过 Max-pooling 操作计算节点的初始特征向量。</p>
@@ -521,10 +530,10 @@ SpConv)和 3D 子流形稀疏 (3D Sub-SpConv) 卷积网络模型。无独有偶�
 for voting in online point cloud object detection》的研究者演示了一种在
 3D 数据中应用滑动窗口（sliding window）的有效投票方案（voting
 scheme)。</p>
-<p>[^ 其实在 Transfomer 的论文里面，作者也提到了这样的背景，就是 CNN 计算负载过大，人们想了很多办法来优化它，比如 3D 稀疏(3D
+<p><strong style="color:#00b050;">其实在 Transfomer 的论文里面，作者也提到了这样的背景，就是 CNN 计算负载过大，人们想了很多办法来优化它，比如 3D 稀疏(3D
 SpConv)和 3D 子流形稀疏(3D
 Sub-SpConv)卷积网络模型，但是 transfomer 的作者最后骄傲的说，虽然做了这些改进，但是问题还是没有解决，但是 transfomer 就没有这个问题。之后可以去看一下基于 transfomer
-的 DERT]:</p>
+的 DERT </strong></p>
 <p>考虑到 LiDAR 点云的 <strong> 稀疏性</strong>（即大约 90% 的体素都没有点），Vote3
 Deep 使用了 <strong> 投票方案</strong>（voting scheme），而 SECOND 使用了 3D
 SpConv 和 3D SubSpConv 来构建基于 3D sparse
@@ -1028,7 +1037,8 @@ deep learning for autonomous driving》
 ）读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#section1-%20%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">Section1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-2-%20%E8%83%8C%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">Section 2 背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E5%92%8C%E7%82%B9%E4%BA%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 激光雷达和点云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-bbox-%20%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 3D BBox 编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-3-%20%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">Section 3 操作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lidar-sdr"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 LiDAR SDR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#point-based"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">3.1.1 Point-based</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#voxel-based-%20%E4%BD%93%E7%B4%A0%E5%8C%96"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">3.1.2 Voxel-based
 体素化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pillar-based%20%E5%9F%BA%E4%BA%8E%E6%9F%B1%E7%9A%84"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3.1.3
 Pillar-based 基于柱的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#projection-based-%20%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%9A%84"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">3.1.4 Projection-based
-基于投影的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#d-backbone-networks"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">3.2.1. 3D Backbone
+基于投影的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#graph-based-%20%E5%9F%BA%E4%BA%8E%E5%9B%BE%E5%83%8F%E7%9A%84"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">3.1.5. Graph-based
+基于图像的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#d-backbone-networks"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">3.2.1. 3D Backbone
 networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-backbone-networks-1"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">3.2.2 2D Backbone
 networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 核心目标检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%99%A8%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.3.1 检测器网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%BB%86%E5%8C%96"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">3.3.2 预测细化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section4-%20%E5%90%84%E7%B1%BB%E6%A3%80%E6%B5%8B%E5%99%A8%E7%9A%84%E5%88%86%E6%9E%90%E7%BB%BC%E8%BF%B0"><span class="nav-number">1.4.</span> <span class="nav-text">Section4
 各类检测器的分析综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-5-%20%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.</span> <span class="nav-text">Section 5
@@ -1143,7 +1153,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21k字</span>
+  <span class="post-count">博客全站共21.3k字</span>
 </div>
         
 <div class="busuanzi-count">
