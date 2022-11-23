@@ -99,13 +99,6 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/Lidar%EF%BC%8C3D-Detection/</loc>
-    <lastmod>2022-11-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://xuzikun.com/tags/3D-Detection/</loc>
     <lastmod>2022-11-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -120,7 +113,21 @@
   </url>
   
   <url>
+    <loc>http://xuzikun.com/tags/Lidar%EF%BC%8C3D-Detection/</loc>
+    <lastmod>2022-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://xuzikun.com/tags/Lidar/</loc>
+    <lastmod>2022-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/tags/3D-Dtection/</loc>
     <lastmod>2022-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -143,14 +150,7 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/DL/</loc>
-    <lastmod>2022-11-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuzikun.com/categories/DL/3D-Detection/</loc>
+    <loc>http://xuzikun.com/categories/3D-Dtection/</loc>
     <lastmod>2022-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
