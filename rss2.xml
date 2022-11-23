@@ -9,8 +9,38 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Fri, 18 Nov 2022 02:54:33 GMT</pubDate>
+    <pubDate>Wed, 23 Nov 2022 14:33:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title></title>
+      <link>http://xuzikun.com/2022/11/23/%E3%80%8ALi3DTR%20A%20LiDAR%20based%203D%20Detection%20Transformer%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <guid>http://xuzikun.com/2022/11/23/%E3%80%8ALi3DTR%20A%20LiDAR%20based%203D%20Detection%20Transformer%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <pubDate>Wed, 23 Nov 2022 14:34:07 GMT</pubDate>
+      
+        
+        
+      <description>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;meta name=&quot;referrer&quot; content=&quot;no-referre</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer" /><h1id="li3detr-a-lidar-based-3d-detection-transformer 读书笔记">《Li3DeTr: ALiDAR based 3D Detection Transformer》读书笔记</h1><p>原文信息：[1]</p><p>G. K. Erabati 和 H. Araujo, 《Li3DeTr: A LiDAR based 3D DetectionTransformer》. arXiv, 2022 年 10 月 27 日. doi: <ahref="https://doi.org/10.48550/arXiv.2210.15365">10.48550/arXiv.2210.15365</a>.</p><p>[TOC]</p><h2 id="快速了解">快速了解</h2><p>受 DETR 在目标检测领域取得的巨大的成功的启发，这篇文章研究了将单级 Lidar 测到的点云作为输入，输出 3Dbounding box 的 end-to-end 的方法。</p><p>框架的 encoder 部分分别使用稀疏卷积(sparseconvolution)和多尺度可变形注意力( multi-scale deformableattention)对 LiDAR 局部和全局特征进行编码。<strong style="color:#ff0000;">（作者原文插了一嘴：基于稀疏神经网络的体素特征提取是有利的，（可能这里的有利是指计算负载小一点？）但它不能在有限的感受野中提取丰富的语义信息。所以才加上了multi-scale deformable attention）</strong></p><p><strong style="color:#00b050;">(文章这里还提到一个信息，说把找到框框的问题视为集合预测的问题，最早好像是 Object-DGCNN 提出来的，而不是 DETR，所以后面作者做比较的时候，也和 Object-DGCNN 做了比较)</strong></p><p>decoder 部分则首先利用学到的稀疏（sparse set of）的 objectquerry，在 croos-attentionblock 里面，关联了 LIDAR 的全局体素特征（从 encoder 获得）和 3D 预测。<strong style="color:#ff0000;">（这个 croos-attentionblock 是作者新加的）</strong></p><p>然后使用多头的注意力机制（ multi-head self-attention）来进行 objectquery interactions。最后这样的 decoder layer 被重复了 <spanclass="math inline">\(L_{dec}\)</span> 次来细化 object query 。</p><p>和 DETR 一样，这篇文章也使用了 set-to-setloss，在 nuScenes 数据集上超过了目前最好的使用 NMS 的方法，在 KITTI 数据集上也有着不错的表现。总之作者把这项工作做 work 了。<strong style="color:#ff0000;">（withoutbells and wistles.作者原文的 conclusion 里面用了这句话，大家可以去查查这句是什么意思，感觉做深度学习的人都很傲娇哈哈哈）</strong></p><p>最后作者提了一嘴，它使用了师生模型（ teacher and studentmode)来进行知识蒸馏（ knowledge distillation(KD)），这一个 trick 也让整个 model 的性能变得更好了一些。</p><h2 id="introduction">introduction</h2><p>作者在 introduction 里面对他的工作总结如下：</p><p><strong>我们提出了一种端到端、单级基于 LiDAR 的 3D 检测变换器（Li3DeTr）网络，以预测自动驾驶的 3D 边界框。</strong></p><p><strong>首先，使用 SECOND[47]通过利用稀疏卷积和 BEV 变换或使用 PointPillars 来提取体素特征。其次，我们使用具有多尺度可变形注意力的编码器模块 [55] 来捕获 BEV 特征图中的丰富语义特征和长距离依赖性，以生成 LiDAR 全局特征。</strong></p><p><strong>LiDAR 全局特征被传递到解码器模块。最后，我们在解码器中引入了一个新的 Li3DeTr 交叉关注块，以利用学习到的对象查询将 LiDAR 全局特征链接到 3D 对象预测。对象查询在多头自我关注块中彼此交互。迭代地细化对象查询，并在每个解码器层中回归 3D 边界框参数。受 DETR 的启发，我们使用集到集损失来优化我们的网络。</strong></p><p>他认为他的贡献主要在于：</p><ol type="1"><li>他做的很 work，并且吸收了 DETR 的优点，用到了 Lidar 上面。</li><li>他们提出的这个 cross atteention block 很有用，利用 objectquerry 将 LiDAR 全局编码特征与 3D 对象预测相链接。并且他们做了消融实验（ablationstudy）来验证。</li><li>他们把代码发出来了，方便后续研究。</li></ol><h2 id="related-work">Related Work</h2><p>作者在这里主要介绍了三种东西，第一种是基于点的方法，第二种是基于栅格的方法，第三种是基于 transfomer 的方法。</p><p>作者对于第一种方法的评价是：尽管基于点的方法通过集合抽象层实现了大的接受域，但它们在计算上很昂贵。</p><p>第二种：3DCNN 的方法（将点投影到规则网格）在计算上非常昂贵，并且需要大量内存，为了缓解这个问题，人们使用稀疏的 3D 神经网络进行有效的体素处理。另外一种方法是将体素特征投影到 BEV 空间，最后预测 BEV 空间中的 3D 边界框。由于这种方法利用了体素和 BEV 空间的优势，作者使用 SECON 测试了我们的网络。</p><p>第三种：作者提到了 DETR 的贡献性和开创性，然后 3DETR（前面的一些工作）是纯粹基于点的，为了自动驾驶的计算效率，本文是基于体素的，并关注 BEV 全局体素特征。</p><p>最后作者说：我们使用基于体素 BEV 的 CNN 主干架构来构建我们的模型，用于局部特征提取，使用基于注意力的架构来进行全局特征提取，以增加感受野大小，最后使用transformer decoder head 来链接全局特征和 3D 预测。</p><h2 id="methodology">Methodology</h2><p>整个网络的框架如下图所示：</p><p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211232141960.png" alt="image-20221123214134625" style="zoom:67%;" /></p><h3 id="backbonelocal-features">Backbone:Local features</h3><p>文中为了加速大规模点云的 3D 对象检测，我们将点分散到 BEV 网格中<strong style="color:#92d050;">（作者认为采用 BEV 网格，这不仅是因为 2D 网格状特征是准确度和效率之间的良好权衡，而且与自动驾驶非常相关，因为地面上的每个网格单元上可能有一个对象）</strong>，并使用 CNN 提取局部点特征。</p><p>这里作者其实用了两种 pipeline：</p><p>1. 体素化 +SparseConv 计算 3D 稀疏卷积并获得局部体素特征。</p><p>空体素被零填充，稀疏体素被转换为 BEV 2D 网格状特征。</p><p>2. 将点云转换为密集 BEV 柱图，如 PointPillars 所示，柱分辨率为 [0.2，0.2，8] 米。</p><p>使用支柱特征网来转换支柱特征。最后使用 SECOND 作为 backbone 从稀疏体素或 BEV 柱特征中提取局部体素特征，并使用特征金字塔网络（FPN）对其进行进一步变换，以获得多尺度局部体素特性图</p><h3 id="encoder-global-features">Encoder: Global features</h3><p>为了从局部体素特征图获得全局体素特征，文章采用多尺度可变形注意力机制。<strong style="color:#ff0000;">（传统注意力机制会导致编码高分辨率特征图时无法接受的计算复杂性）</strong>。多尺度可变形注意力结合了可变形卷积的稀疏采样和变换器的长距离关系框架的优点。</p><p>编码器模块的输入和输出是具有相同分辨率的多尺度特征图。可变形注意力仅关注参考点周围的一小组关键采样点，从而降低了计算复杂性。</p><p>每个查询像素的可变形自关注中的参考点是其自身。每个编码器层由具有残差连接的多尺度可变形自关注和 MLP 块组成，并重复<span class="math inline">\(L_{enc}\)</span>次。从编码器提取的全局体素特征被传递到 Li3DeTr.</p><h3 id="decoder">Decoder</h3><p>解码器输入一组 object querry, <span class="math inline">\(N_q\)</span>是查询的数量，<span class="math inline">\(Q_1\)</span>是用模型权重学习的,</p><p>全局体素特征图由解码器层组成，解码器层被重复 <spanclass="math inline">\(L_{dec}\)</span> 次数以细化对象查询。</p><p>对于第一解码器层，使用单层全连接（FC）网络和 sigmoid normalization从 object querry 中编码 3D 参考点。</p><p>每个解码器层由 Li3DeTr 交叉关注块、多头自关注块和带有跳过连接的 MLP 块组成。</p><p>Li3DeTr cross-attention block 的输入是：object queries，3D referencepoints 和 LiDAR global multi-scale feature maps。</p><p><span class="math inline">\(R_{ji}\)</span> 表示参考点 <spanclass="math inline">\(r_i\)</span>到 LiDAR 全局体素特征图的尺度 j 的投影的变换。在参考点的投影位置，对比例为 j 的 LiDARBEV 特征图进行双向采样, 在每个采样特征尺度 j 处，每个 objectqueries 的关注权重 <span class="math inline">\(w_ij\)</span>由 FC 层和 sigmoid normalization 计算。</p><p>将来自多尺度特征图的采样特征相加，以获得第 i 个参考点的交叉关注特征，最终使用公式 3 更新 objectquerie。</p><h3 id="loss">Loss</h3><p>和 DETR 一样，同样使用了 set-to-setloss，同样使用了匈牙利算法来进行二分图匹配（ match predictions andground-truths），最后不同的是作者使用的是 L1 loss and focalloss<strong style="color:#ff0000;">（DETR 中用的是 L2）</strong>，分别计算边界盒回归和分类损失，给定二分匹配。</p><p>整个模型的设计到这里就说完了，还有文章最开始提到的 knowledgedistillation这个 trick，是一种模型压缩方法，已经在工业界被广泛应用。具体可以去下面的网页看看。</p><p>https://baijiahao.baidu.com/s?id=1673896462976965754&amp;wfr=spider&amp;for=pc</p><h2 id="experiments">Experiments</h2><p>反正最后作者就是说他做的很 work 啦。</p><p>“虽然 LiDAR 点云稀疏，但我们的方法不仅检测到交通锥等小物体，还有效地检测到卡车、公共汽车、建筑车辆等大尺寸物体。这可以通过编码器中主干和注意力机制的局部和全局特征图以及解码器中的交叉注意力来实现。我们的方法还能够检测一些没有标注 groundtruth 的汽车。”</p><p>然后在 objectcategroy 部分，作者提到：“我们对网络主干中的点云进行量化，并将特征图降采样为多个步长，以增加接受范围，但这会导致信息丢失，从而使我们的网络难以检测行人和障碍物等较小的物体。未来点云骨干的设计，在保持原始分辨率的同时增加接收野，将解决这个问题。”</p><p>在 Objectdistance 部分：“尽管 LiDAR 点云在距离自我车辆很远的地方是稀疏的，但我们在编码器和解码器中的注意力机制模拟稀疏点之间的远距离交互，以预测远处的物体。”</p><p>在 Object size 部分：“ ground-truth 3D boundingboxes 被分为两个子集，分别是 0m-4m，和 4m- 正无穷。本文通过注意力机制实现的远距离交互提高了检测性能。</p><p>最后作者分别对：Attention blocks，Number ofqueries，Backbones 三个模块做了消融实验，来证明它的设计每块都是有用的。在 Number ofqueries 部分，作者试出来设定在 900 个效果最 trade-off。然后在 Backbones 部分，作者试出来 VoxelNet 作为 pipeline 的效果要比 PointPillars 更好一些（大概好 5 个百分点）。</p><h2 id="conclusion">Conclusion</h2><p>最后就是结论，这个其实可以去看本 Blog 的第一部分快速了解。</p>]]></content:encoded>
+      
+      
+      <category domain="http://xuzikun.com/categories/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/categories/DL/3D-Detection/">3D-Detection</category>
+      
+      
+      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      
+      
+      <comments>http://xuzikun.com/2022/11/23/%E3%80%8ALi3DTR%20A%20LiDAR%20based%203D%20Detection%20Transformer%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Pointnet(++) 学习笔记</title>
