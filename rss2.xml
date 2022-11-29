@@ -9,7 +9,7 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Tue, 29 Nov 2022 12:15:51 GMT</pubDate>
+    <pubDate>Tue, 29 Nov 2022 13:07:12 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -25,7 +25,7 @@
       
       
       
-      <content:encoded><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer"><h1 id="研究的艺术读书笔记">《研究的艺术》读书笔记 </h1><p> 懒一点 hhh，把记的笔记直接以图片的形式发上来了。推荐也去看沐神原视频：【跟读者建立联系【研究的艺术·一】】https://www.bilibili.com/video/BV1hY411T7vy?p=36&amp;vd_source=c79029179eb238e0c877b7c614ff0bf9</p><p> 下面是笔记的图片：</p><figure><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292015554.png" alt="1_f43"><figcaption aria-hidden="true">1_f43</figcaption></figure><figure><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292013724.png" alt="2_1a0"><figcaption aria-hidden="true">2_1a0</figcaption></figure><p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292013724.png"></p>]]></content:encoded>
+      <content:encoded><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer"><h1 id="研究的艺术读书笔记">《研究的艺术》读书笔记 </h1><p> 懒一点 hhh，把记的笔记直接以图片的形式发上来了。推荐也去看沐神原视频：【跟读者建立联系【研究的艺术·一】】https://www.bilibili.com/video/BV1hY411T7vy?p=36&amp;vd_source=c79029179eb238e0c877b7c614ff0bf9</p><p> 下面是笔记的图片：</p><p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292105046.jpg"></p><p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292107827.jpg"></p><p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211292100477.png"></p>]]></content:encoded>
       
       
       <category domain="http://xuzikun.com/categories/%E8%AE%BA%E6%96%87/">论文</category>
@@ -59,9 +59,9 @@
       <category domain="http://xuzikun.com/categories/3D-Dtection/">3D-Dtection</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
-      
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       <category domain="http://xuzikun.com/tags/3D-Dtection/">3D-Dtection</category>
       
@@ -117,9 +117,9 @@
       <category domain="http://xuzikun.com/categories/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
-      
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
       
       
       <comments>http://xuzikun.com/2022/11/15/DETR%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
@@ -145,9 +145,9 @@
       <category domain="http://xuzikun.com/categories/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
-      
       <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       
       <comments>http://xuzikun.com/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
