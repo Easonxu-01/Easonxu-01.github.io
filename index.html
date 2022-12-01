@@ -233,17 +233,17 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -341,6 +341,278 @@ mjx-container[display="true"] + br {
           <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="欢迎你">欢迎你！</h1>
 <p>虽然现在这里还是 <strong style="color:#00b0f0;"> 冷冷清清</strong>，</p>
 <p>但是之后我会建起一片 <strong style="color:#00b050;"> 茂密的森林</strong>！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/12/01/%E3%80%8AFeature%20Pyramid%20Networks%20for%20Object%20Detection%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小徐">
+      <meta itemprop="description" content="今天珍惜今天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小徐的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/01/%E3%80%8AFeature%20Pyramid%20Networks%20for%20Object%20Detection%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《Feature Pyramid Networks for Object Detection》读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-01 19:28:54 / 修改时间：19:44:43" itemprop="dateCreated datePublished" datetime="2022-12-01T19:28:54+08:00">2022-12-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DL/3D-Detection/" itemprop="url" rel="index"><span itemprop="name">3D-Detection</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer">
+<h1 id="feature-pyramid-networks-for-object-detection 读书笔记">《Feature
+Pyramid Networks for Object Detection》读书笔记</h1>
+<p>[TOC]</p>
+<h2 id="论文基本信息"><strong>论文基本信息</strong></h2>
+<ul>
+<li><p>标题：Feature Pyramid Networks for Object Detection</p></li>
+<li><p>作者：Tsung-Yi Lin, Piotr Doll´ar, Ross Girshick, Kaiming He,
+Bharath Hariharan, Serge Belongie</p></li>
+<li><p>机构：Facebook AI Research (FAIR), Cornell University and Cornell
+Tech</p></li>
+<li><p>来源：CVPR2017</p></li>
+<li><p>时间：2017/04/19</p></li>
+<li><p>链接：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1612.03144">https://arxiv.org/abs/1612.03144</a></p></li>
+<li><p>代码：</p></li>
+<li><ul>
+<li>无 official code</li>
+<li><a href="https://link.zhihu.com/?target=https%3A//paperswithcode.com/paper/feature-pyramid-networks-for-object-detection">https://paperswithcode.com/paper/feature-pyramid-networks-for-object-detection</a></li>
+</ul></li>
+</ul>
+<h2 id="文章概要"><strong>文章概要</strong></h2>
+<h3 id="已有方法"><strong>已有方法★</strong></h3>
+<p>feature pyramid 是用来检测不同 scale 的 object 的 1 种基本方法。</p>
+<p>如图 1 和图 2 所示，基于 feature pyrimid 来检测不同 scale 的 object，<span style="background:#FFFFBB;">共有 5 种思路：</span><strong>4 种已有思路（分别缩写为 ABCD）和本文思路（FPN）</strong></p>
+<p>下面这张图列出了这些不同方法的原理：</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212011859036.webp" alt="img" style="zoom: 67%;"></p>
+<p>下面这张表则展示了不同方法的优缺点和主流应用模型：</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212011904344.webp" alt="img" style="zoom: 67%;"></p>
+<h3 id="解决的问题"><strong>解决的问题★</strong></h3>
+<p>feature
+pyramid 是用来检测不同 scale 的 object 的 1 种基本方法，但 <strong> 最近的 deep
+learning detector（RCNN、SPPNet、Fast RCNN、Faster
+RCNN）却都没有使用 pyramid representation（在多个尺度不同的 feature
+map 上进行检测）</strong>，其中部分原因是它们计算量大、需要大量 memory。</p>
+<h2 id="方法研究内容"><strong>方法 / 研究内容</strong></h2>
+<p>FPN：基于 CNN 固有的 pyramid hierarchy，通过 skip connection 构建 top-down
+path，仅需少量成本生成 feature pyramid，并且<strong>feature
+pyramid 的每个 scale 都具有 high-level semantic
+feature</strong>，最终在 feature pyramid 的各个 level 上进行目标检测</p>
+<h3 id="创新点优点"><strong>创新点 / 优点</strong></h3>
+<ul>
+<li><strong>在 deep learning
+detector 中构建 pyramid（而最近的 RCNN、SPPNet、Fast RCNN、Faster
+RCNN 都没有使用 pyramid representation）</strong>，仅需少量成本并且 feature
+pyramid 中每个 level 都具有 high-level semantic feature</li>
+<li>速度快、精度高</li>
+<li>generic：<span style="background:#FFFFBB;">FPN 独立于骨干网络</span>，可以用于改进多种算法，本文将其用于 Faster
+RCNN（RPN+Fast RCNN）、instance segmentation proposals</li>
+</ul>
+<h3 id="性能效果"><strong>性能 / 效果</strong></h3>
+<ul>
+<li>准确度：SOTA，将 FPN 应用于 Faster RCNN，在 COCO
+detection 上超过所有 single-model</li>
+<li>速度：GPU 上达 6FPS</li>
+</ul>
+<h3 id="不足"><strong>不足</strong></h3>
+<ul>
+<li>PoolNet 论文中指出 top-down 路径中 <strong style="color:#ff0000;"> 高级语义信息会逐渐稀释</strong></li>
+<li>Libra RCNN 指出 FPN 采取的 sequential manner 使得 integrated
+features<strong style="color:#ff0000;">更多地关注于相邻层</strong>，而较少关注其它层，每次 fusion 时非相邻层中的 semantic
+information 就会稀释 1 次</li>
+</ul>
+<h2 id="fpn 算法流程"><strong>FPN 算法流程★</strong></h2>
+<ul>
+<li>输入：任意 scale 的单张图片</li>
+<li>输出：在多个 level 输出对应 size 的 feature map</li>
+</ul>
+<p>FPN 的构建包括 1 个 bottom-up path、1 个 top-down path 和 skip connection</p>
+<h3 id="bottom-up-path"><strong>bottom-up path</strong></h3>
+<ul>
+<li><p>backbone：<strong style="color:#ff0000;">bottom-up
+path 就是 backbone 的 feedforward</strong></p></li>
+<li><p>stage：</p></li>
+<li><ul>
+<li>定义：将 backbone 分为多个 stage，将每个 stage 定义为 1 个 pyramid
+level</li>
+<li>输出：每个 stage 中，所有 layer 输出特征图的 size 是相同的，<strong style="color:#92d050;">取其中最后 1 层的输出作为该 stage 的输出，</strong>因为每个 stage 中最深的层应该具有最强的特征</li>
+<li>下采样：<strong style="color:#92d050;">相邻 stage 之间的下采样比例为 2</strong></li>
+</ul></li>
+<li><p>FPN for
+ResNet：本文将 ResNet 的 <strong style="color:#92d050;"> 后 4 个 stage</strong>{C2,C3,C4,C5}（相对于输入的下采样比例分别为 4、8、16、32）的输出定义为 4 个 pyramid
+level，并不将第 1 个 stage 的输出包含到 FPN 中因为其内存占用量比较大。</p></li>
+</ul>
+<h3 id="top-down-path"><strong>top-down path</strong></h3>
+<ul>
+<li><p>motivation：high-level semantic
+information 有助于识别目标但有害于定位目标，</p>
+<p>low-level spatial
+information 有害于识别目标但有助于定位目标（由于下采样次数较少，所以可以更准确地定位）</p></li>
+<li><p>构建：通过 skip connection 来构建 top-down path</p>
+<p><strong style="color:#ff0000;">注：在开始 top-down
+path 之前，会在 bottom-up path 顶层使用 1×1 卷积生成 the coarsest resolution
+map</strong></p></li>
+</ul>
+<h3 id="skip-connection"><strong>skip connection</strong></h3>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212011923635.png" alt="image-20221201192344526" style="zoom:67%;"></p>
+<ol type="1">
+<li>将来自 top-down path 的 coarser-resolution feature
+map 上采样。上采样比例为 2，简单起见就使用 nearest neighbor
+upsampling<strong style="color:#ff0000;">（不足中提到的只关注相邻层的问题就主要是这里的问题）</strong></li>
+<li>使用 1×1 卷积减少来自 bottom-up path 的对应 feature map 的通道数</li>
+<li>对上 2 步得到的 2 个 feature
+map（size 和 channel 数量都相同）进行 element-wise addition</li>
+</ol>
+<h3 id="输出"><strong>输出</strong></h3>
+<p>top-down path 得到的输出 {P2,P3,P4,P5} 就是 FPN 的输出，其和 bottom-up
+path 中的 {C2,C3,C4,C5} 相对应，其中 Ci 和 Pi 的 spatial
+size 相同、Ci,Pi 表示其分辨率比输入低 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewBox="0 -830.4 827 830.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container></span></p>
+<ul>
+<li><p>3×3 卷积：对每个 element-wise addition 得到的 feature
+map 分别进行 3×3 卷积，即得到<strong>FPN 的输出</strong>，这样可以减少上采样带来的 aliasing
+effect</p></li>
+<li><p>More about 3×3 卷积</p></li>
+<li><ul>
+<li>作用：这样可以减少上采样带来的 aliasing effect****</li>
+<li>激活函数：3×3 卷积后没有非线性激活函数，作者通过实验发现其影响很小</li>
+<li>通道数：FPN 和传统的 featurized image pyramid 一样，各个 pyramid
+level 共享 classifier/regressor，所以 <strong> 将这些 3×3 卷积层的输出通道数设置为 256</strong>。</li>
+</ul></li>
+</ul>
+<h2 id="fpn-for-faster-rcnn"><strong>FPN for Faster RCNN</strong></h2>
+<h3 id="fpn-for-rpn"><strong>FPN for RPN</strong></h3>
+<p>如未特别指出，则其余设置与 Faster RCNN 相同</p>
+<ul>
+<li><p>FPN 输出：{P2,P3,P4,P5,P6}，<strong style="color:#ff0000;">其中 P6 只是 1 个步长为 2 的下采样</strong>，引入它是为了覆盖更大的 anchor
+scale</p>
+<p>(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="9.553ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 4222.4 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1000,0)"></path></g><g data-mml-node="mo" transform="translate(1722.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(2722.4,0)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container></span>)</p></li>
+<li><p>RPN 结构：1 个 3×3 卷积 + 2 个并行 1×1 卷积</p></li>
+<li><p>RPN 输入：在 5 个 pyramid level 上，分别运行同 1 个 RPN(共享)</p></li>
+<li><p>anchor：5 个 level 共有 5×3=15 种 anchor</p></li>
+<li><ul>
+<li>scale：引入 FPN 后，每个 pyrimid
+level 上的 anchor 就不需要是 multi-scale 的了。每个 pyramid
+level 上的 anchor 各只有 1 种 scale，{P2,P3,P4,P5,P6}上 anchor 的 scale 分别为{<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="23.668ex" height="2.419ex" role="img" focusable="false" viewBox="0 -875 10461.4 1069"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(1436.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(1881.2,0)"><g data-mml-node="mn"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,404.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(3317.8,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(3762.4,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g><g data-mml-node="mn" transform="translate(1533,393.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(5699,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(6143.7,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(500,0)"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(1000,0)"></path></g><g data-mml-node="mn" transform="translate(1533,393.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(8080.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(8524.9,0)"><g data-mml-node="mn"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1000,0)"></path></g><g data-mml-node="mn" transform="translate(1533,393.1) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></g></svg></mjx-container></span>}</li>
+<li>aspect ratio：每个 level 上都有 3 个 aspect ratio 的 anchor（1:2, 1:1,
+2:1）</li>
+</ul></li>
+<li><p>training label assignment：</p></li>
+<li><ul>
+<li>正样本：和 GT BBox 的 IoU 最大的 anchor、和 GT
+BBox 的 IoU 大于 0.7 的 anchor</li>
+<li>负样本：和所有 GT BBox 的 IoU 都小于 0.3 的 anchor</li>
+</ul></li>
+<li><p>GT BBox assignment：并不根据 GT BBox 的 scale 将 GT
+BBox 分配到某个 pyramid level。而是不同 scale 的 anchor 已对应到某个 pyramid
+level、GT 会根据 IoU 和 anchor 对应</p></li>
+<li><p>multi
+RPN：<strong style="color:#ff0000;">如果每个 level 上使用不同的 RPN，准确度也是类似的，</strong>这说明 pyramid 的各个 level 共享相似的 semantic
+level，这种优势类似于 featurized image pyramid 的优势（1 个 common head
+classifier 可以应用于从任意 image scale 计算得到的 feature map）</p></li>
+</ul>
+<h3 id="fpn-for-fast-rcnn"><strong>FPN for Fast RCNN</strong></h3>
+<p>可以把 FPN 输出的 feature pyramid 当做是 1 个 image
+pyramid 生成的，因此可以使用 SPPNet 和 Fast RCNN 应用于 image
+pyramid 时的分配策略，<strong><strong style="color:#ff0000;">将不同 scale 的 RoI 分配到对应 pyramid
+level 的特征图上</strong></strong></p>
+<p>1 个 size（在 input image 上的 size）为 (w,h) 的 RoI 应该被分配到 feature
+pyramid 上的 levelPk：</p>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212011925357.png" alt="img">
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>其中 224 为 ImageNet 的预训练 size，k0 是 1 个 224×224 的 RoI 应该被映射到的 target
+pyramid level。</p>
+<p>ResNet 原文中的 Faster RCNN 使用 C4 作为 RPN 的输入，所以本文将 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="2.166ex" height="1.945ex" role="img" focusable="false" viewBox="0 -694 957.6 859.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mn" transform="translate(554,-150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></g></svg></mjx-container></span> 设为 4。</p>
+<p>假如 RoI 的 scale 小于 224×224（比如 112×112，正好是 224 的一半），则它会被映射到 finer-resolution
+level（比如 3）。注：fine-resolution 指像素数多，coarse-resolution 指像素少。</p>
+<p>ResNet 中使用 conv5 作为 conv4 输出的 feature
+map 顶部的 head，但本文已经将 conv5 用于构建 FPN。因此本文使用 RoI
+pooling 生成 7×7 的 feature，然后用 2 个 1024 维的 FC 层 +ReLU，然后再输入到最终的 classification
+layer 和 BBox regression layer。相比于 standard conv5
+head，我们的方法参数更少、速度更快</p>
+<h2 id="fpn-for-segmentation-proposals"><strong>FPN for Segmentation
+Proposals</strong></h2>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212011926952.png" alt="image-20221201192645843">
+<figcaption aria-hidden="true">image-20221201192645843</figcaption>
+</figure>
+<h2 id="参考链接"><strong>参考链接</strong></h2>
+<ul>
+<li><strong><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/354140540">FPN 网络图解及论文笔记 -
+知乎 (zhihu.com)</a></strong></li>
+</ul>
 
       
     </div>
@@ -501,7 +773,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-25 20:38:18" itemprop="dateModified" datetime="2022-11-25T20:38:18+08:00">2022-11-25</time>
+                <time title="修改时间：2022-12-01 16:46:45" itemprop="dateModified" datetime="2022-12-01T16:46:45+08:00">2022-12-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -509,7 +781,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/3D-Dtection/" itemprop="url" rel="index"><span itemprop="name">3D-Dtection</span></a>
+                  <a href="/categories/3D-Detection/" itemprop="url" rel="index"><span itemprop="name">3D-Detection</span></a>
                 </span>
             </span>
 
@@ -1748,20 +2020,20 @@ BBox 的俯仰角。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1841,7 +2113,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24k字</span>
+  <span class="post-count">博客全站共25.8k字</span>
 </div>
         
 <div class="busuanzi-count">
