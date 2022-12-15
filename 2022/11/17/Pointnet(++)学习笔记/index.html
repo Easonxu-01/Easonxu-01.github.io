@@ -23,18 +23,18 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Pointnet(++)学习笔记 [TOC] PointNet Abstract 本文的贡献在于不像之前的工作将点云转换为规则的三维提速网格或图像集合，而是直接以点的形式处理点云，并且很好的尊重了点云的排列不变性。 在这方面的探索，Pointnet 的工作是开创性的，而且它简洁、高效、强大。 PointNet 所作的事情就是：对点云做特征学习，并将学习到的特征去做不同的应用：分类（">
+  <meta name="description" content="Pointnet(++)学习笔记 [TOC] PointNet Abstract 本文的贡献在于不像之前的工作将点云转换为规则的三维提速网格或图像集合，而是直接以点的形式处理点云，并且很好的尊重了点云的排列不变性。 在这方面的探索，Pointnet的工作是开创性的，而且它简洁、高效、强大。 PointNet所作的事情就是：对点云做特征学习，并将学习到的特征去做不同的应用：分类（sh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pointnet(++) 学习笔记">
 <meta property="og:url" content="http://xuzikun.com/2022/11/17/Pointnet(++)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="Pointnet(++)学习笔记 [TOC] PointNet Abstract 本文的贡献在于不像之前的工作将点云转换为规则的三维提速网格或图像集合，而是直接以点的形式处理点云，并且很好的尊重了点云的排列不变性。 在这方面的探索，Pointnet 的工作是开创性的，而且它简洁、高效、强大。 PointNet 所作的事情就是：对点云做特征学习，并将学习到的特征去做不同的应用：分类（">
+<meta property="og:description" content="Pointnet(++)学习笔记 [TOC] PointNet Abstract 本文的贡献在于不像之前的工作将点云转换为规则的三维提速网格或图像集合，而是直接以点的形式处理点云，并且很好的尊重了点云的排列不变性。 在这方面的探索，Pointnet的工作是开创性的，而且它简洁、高效、强大。 PointNet所作的事情就是：对点云做特征学习，并将学习到的特征去做不同的应用：分类（sh">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221117101542832.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221117104356332.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221117110835091.png">
 <meta property="article:published_time" content="2022-11-17T05:47:30.319Z">
-<meta property="article:modified_time" content="2022-11-25T12:38:39.259Z">
+<meta property="article:modified_time" content="2022-12-15T12:06:05.956Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="DL">
 <meta property="article:tag" content="Lidar，3D-Detection">
@@ -319,7 +319,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-25 20:38:39" itemprop="dateModified" datetime="2022-11-25T20:38:39+08:00">2022-11-25</time>
+                <time title="修改时间：2022-12-15 20:06:05" itemprop="dateModified" datetime="2022-12-15T20:06:05+08:00">2022-12-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -360,6 +360,7 @@ mjx-container[display="true"] + br {
 feature）、分割（point-wise feature）等。</p>
 <p>PointNet 之所以影响力巨大，就是因为它为点云处理提供了一个简单、高效、强大的特征提取器（encoder），几乎可以应用到点云处理的各个应用中，其地位类似于图像领域的 AlexNet。</p>
 <p><strong style="color:#ffff00;">（当然，Alexnet 带来的影响过了几年人们又觉得有一部分可能是不太好的，但是探索开创的意义重大）</strong></p>
+<span id="more"></span>
 <h3 id="introduction">Introduction</h3>
 <p>典型的卷积架构需要高度规则的数据格式，以便执行权重共享和其他内核优化的工作。但是这种数据表示转换使生成的数据变得不必要的庞大，并且会掩盖数据的自然不变量（natural
 invariances）。</p>
