@@ -23,20 +23,25 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="欢迎你！ 虽然现在这里还是  冷冷清清， 但是之后我会建起一片  茂密的森林！">
+  <meta name="description" content="《LESS: Label-Efficient Semantic Segmentation for LiDAR Point Clouds》读书笔记 [TOC] 感觉这篇文章标题起的很好hhh，Less is more！论文起个好名字确实重要！ 原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.08064 在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://xuzikun.com/2022/11/13/helloworld/index.html">
+<meta property="og:title" content="《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记">
+<meta property="og:url" content="http://xuzikun.com/2022/12f9475ba3.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="欢迎你！ 虽然现在这里还是  冷冷清清， 但是之后我会建起一片  茂密的森林！">
+<meta property="og:description" content="《LESS: Label-Efficient Semantic Segmentation for LiDAR Point Clouds》读书笔记 [TOC] 感觉这篇文章标题起的很好hhh，Less is more！论文起个好名字确实重要！ 原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.08064 在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-13T08:51:26.902Z">
-<meta property="article:modified_time" content="2022-11-17T01:10:34.295Z">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212171106164.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212171145712.png">
+<meta property="article:published_time" content="2022-12-17T02:02:41.345Z">
+<meta property="article:modified_time" content="2022-12-17T07:40:49.149Z">
 <meta property="article:author" content="小徐">
-<meta property="article:tag" content="欢迎">
+<meta property="article:tag" content="Lidar">
+<meta property="article:tag" content="DL">
+<meta property="article:tag" content="Semantic Segmentation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212171106164.png">
 
-<link rel="canonical" href="http://xuzikun.com/2022/11/13/helloworld/">
+<link rel="canonical" href="http://xuzikun.com/2022/12f9475ba3.html">
 
 
 <script id="page-configurations">
@@ -49,7 +54,7 @@
   };
 </script>
 
-  <title>Hello World | 小徐的Blog</title>
+  <title>《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记 | 小徐的Blog</title>
   
 
 
@@ -80,7 +85,119 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/rss2.xml" title="小徐的Blog" type="application/rss+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/rss2.xml" title="小徐的Blog" type="application/rss+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -170,7 +287,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/11/13/helloworld/">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/12f9475ba3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -183,38 +300,32 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记
         </h1>
 
         <div class="post-meta">
 
-          
-            <i class="fa fa-thumb-tack"></i>
-            <font color=7D26CD>置顶</font>
-            <span class="post-meta-divider">|</span>
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-13 16:51:26" itemprop="dateCreated datePublished" datetime="2022-11-13T16:51:26+08:00">2022-11-13</time>
+              <time title="创建时间：2022-12-17 10:02:41 / 修改时间：15:40:49" itemprop="dateCreated datePublished" datetime="2022-12-17T10:02:41+08:00">2022-12-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-17 09:10:34" itemprop="dateModified" datetime="2022-11-17T09:10:34+08:00">2022-11-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
+                  <a href="/categories/Semantic-Segmentation/" itemprop="url" rel="index"><span itemprop="name">Semantic Segmentation</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Semantic-Segmentation/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
                 </span>
             </span>
 
@@ -236,9 +347,95 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="欢迎你">欢迎你！</h1>
-<p>虽然现在这里还是 <strong style="color:#00b0f0;"> 冷冷清清</strong>，</p>
-<p>但是之后我会建起一片 <strong style="color:#00b050;"> 茂密的森林</strong>！</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer">
+<h1 id="less-label-efficient-semantic-segmentation-for-lidar-point-clouds 读书笔记">《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记</h1>
+<p>[TOC]</p>
+<p><strong style="color:#c00000;">感觉这篇文章标题起的很好 hhh，Less is
+more！论文起个好名字确实重要！</strong></p>
+<p>原文链接：https://arxiv.org/abs/2210.08064</p>
+<p>在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、无监督还是半监督？）没有一个基础的概念的话，可以阅读一下这篇推送：https://mp.weixin.qq.com/s/a1a2-RjMC4IJW6WZVw5iJw</p>
+<h2 id="abstract">Abstract</h2>
+<p>Lidar 的点云语义分割任务在自动驾驶中很重要，但是训练很深的网络需要很大的数据集，而标注数据集又很贵。</p>
+<p>所以作者决定使用 Label-Efficient 的方法，使用半 / 弱监督学习（semi/weakly
+supervised learning）并且几乎适用于所有的 3D 语义分割的 backbone。</p>
+<p>具体来说，作者利用户外场景中的几何模式（geometry
+patterns）进行启发式预分割（heuristic
+pre-segmentation），减少人工标注，并与标注过程共同设计学习目标。在学习步骤中，我们利用原型学习（prototype
+learning）来获得更多描述性的点嵌入（point
+embeddings），并使用多扫描蒸馏（multi-scan
+distillation）从时间聚合点云（temporally aggregated point
+clouds）中开发更丰富的语义，以提高单扫描模型的性能。</p>
+<span id="more"></span>
+<h2 id="introduction">Introduction</h2>
+<p>此外，大多数先前的探索倾向于从 <strong style="color:#ff0000;"> 两个独立的角度 </strong> 来解决问题，这在我们的室外环境中可能不太有效。</p>
+<p>具体来说，一个角度是 <strong style="color:#ff0000;"> 提高标注效率 </strong>，该方法采用主动学习[47,55,34]、弱标注[44,54] 和 2D 监督 [53] 来减少标注工作量。另一种视角 <strong style="color:#ff0000;"> 侧重于训练</strong>，其中努力假设给出了部分标签，并设计半 / 弱监督学习算法来利用有限的标签并争取更好的性能[33,60,44,61,20,34,66]。</p>
+<p>本文针对自动驾驶汽车捕获的激光雷达点云，提出了一种新的框架，标签高效语义分割 (LESS)。与以往的工作不同，<strong style="color:#ff0000;"> 我们的方法共同设计了标记过程和模型学习</strong></p>
+<p>我们的协同设计基于两个原则:1)标签步骤旨在提供 <strong style="color:#ff0000;"> 最低限度的监督 </strong>，这适用于最先进的半 / 弱监督分割方法;2) 模型训练步骤可以 <strong style="color:#ff0000;"> 利用标签策略作为先验</strong>，推导出更多的学习目标。</p>
+<p>所提出的方法可以直接适应大多数最先进的激光雷达分割骨干，而不引入任何网络架构变化或部署在机载时额外的计算复杂性。</p>
+<p>总之，我们的贡献主要包括:</p>
+<ol type="1">
+<li>分析室外激光雷达点云的标签高效分割与室内设置的区别，并表明不平衡的类别 <strong style="color:#ff0000;">（长尾问题）</strong> 分布是主要挑战之一。</li>
+<li>利用激光雷达点云独特的几何结构，设计一种 <strong style="color:#ff0000;"> 启发式算法 </strong>，将输入点<strong style="color:#ff0000;"> 预分割 </strong> 成高纯度的连接组件。然后提出了一种定制的标签策略，以利用定制标签和损耗的组件。</li>
+<li>将有益的组件调整为标签高效的 LiDAR 分割，并精心设计一个<strong style="color:#ff0000;">network-agnostic
+pipeline</strong>，实现与完全监督的 on-par 相同的性能。</li>
+<li>在两个大规模自动驾驶数据集上评估拟议的 pipeline，并广泛消融每个模块。</li>
+</ol>
+<h2 id="related-work">Related work</h2>
+<p>这部分原文没说啥，主要是讲集中在室内，要么关注标签，要么关注训练。</p>
+<h2 id="method">Method</h2>
+<h3 id="pilot-study">（1）pilot study</h3>
+<p>使用 Cylinder3D 设置 3 种标签：(a) 100% labels, (b) randomly annotating
+0.1% points per scan, and (c) randomly selecting 0.1% scans and
+annotating all points for the selected scans.</p>
+<p>在常见类别上半监督与全监督差别不大，差别主要在 underrepresented
+categories。</p>
+<p>另外（c）的效果好于（b）</p>
+<h3 id="overview">（2）overview</h3>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212171106164.png" alt="image-20221217110627915">
+<figcaption aria-hidden="true">image-20221217110627915</figcaption>
+</figure>
+<h3 id="pre-segmantation">（3）pre-segmantation</h3>
+<p>由于现代网络可以从稀疏的注释中学习同质邻域的语义，在大型对象上花费大量的注释预算可能是徒劳的。基于组件的粗注释与对象大小无关，这有利于表示不足的小对象。</p>
+<p>预分割的四个步骤：</p>
+<ol type="a">
+<li><p>Fuse overlapping scans. 融合重叠扫描</p></li>
+<li><p>Detect ground
+points. 删除地面点（使用 RANSAC 算法 [15] 来检测每个局部单元的接地点）</p></li>
+<li><p>Construct connected
+components. 构造连接部件（通过自适应阈值将点分组）</p></li>
+<li><p>Subdivide large
+components. 细分大型部件（为了保持每个组件的高纯度和便于网络训练，我们对超大组件进行细分，以确保每个组件都在固定的尺寸范围内。）</p></li>
+</ol>
+<h3 id="annotation-policy-training-labels">（4）Annotation policy &amp;
+training labels</h3>
+<p>作者建议粗略地注释组件建议，而不是一丝不苟地标记每个点。具体来说，对于每个组件提案，注释者需要首先浏览组件，然后为每个标识的类别只标记一个点。</p>
+<p>根据组件建议，我们可以得到三种类型的标签：</p>
+<p>稀疏标签: 由注释器直接标记的点。</p>
+<p>弱标签: 出现在每个组件中的类。弱标签是基于每个组件中人工注释的稀疏标签派生的。模型从每个组件向其中的点传播弱标签。</p>
+<p>传播标签: 对于纯组件(即只出现一个类别)，可以将标签传播到整个组件。</p>
+<p>文章通过利用三种类型的标签来构建联合损失函数:</p>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212171145712.png" alt="image-20221217114513646">
+<figcaption aria-hidden="true">image-20221217114513646</figcaption>
+</figure>
+<h3 id="contrastive-prototype-learning">（5）contrastive prototype
+learning</h3>
+<h3 id="multi-scan-distillation">（6）multi-scan distillation</h3>
+<p>文章的目标是学习一种分割网络，该网络将单个激光雷达扫描作为输入，并可以部署在实时车载应用程序中。在我们的标签高效训练中，我们可以训练一个多扫描网络作为教师模型。该算法对多个扫描数据进行时间融合，以密集的点云数据作为输入，弥补单次扫描数据的稀疏性和不完整性。因此，教师模型有望利用更丰富的语义，并且比单扫描模型表现更好。特别是，它可以提高那些代表性不足的类别的性能，这些类别往往较小且稀疏。然后，我们从多扫描教师模型中提取知识，以提高单扫描学生模型的性能。</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>propose a pipeline that
+<strong style="color:#ff0000;">co-designs</strong> the
+<strong style="color:#ff0000;">labeling and the model learning</strong>
+and can <strong style="color:#ff0000;">work with most 3D segmentation
+backbones</strong>.</p>
+<p>an effective approach for bootstrapping labeling and learning from
+<strong style="color:#ff0000;">scratch</strong>. In addition, LESS is
+also <strong style="color:#ff0000;">highly compatible for efficiently
+improving</strong> a performant model.</p>
+<p>文章最后还介绍了一些实验的细节以及结果，如果想复现可以去详细阅读这部分。</p>
 
     </div>
 
@@ -279,7 +476,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://xuzikun.com/2022/11/13/helloworld/" title="Hello World">http://xuzikun.com/2022/11/13/helloworld/</a>
+    <a href="http://xuzikun.com/2022/12f9475ba3.html" title="《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记">http://xuzikun.com/2022/12f9475ba3.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -319,7 +516,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%AC%A2%E8%BF%8E/" rel="tag"># 欢迎</a>
+              <a href="/tags/Lidar/" rel="tag"># Lidar</a>
+              <a href="/tags/DL/" rel="tag"># DL</a>
+              <a href="/tags/Semantic-Segmentation/" rel="tag"># Semantic Segmentation</a>
           </div>
 
         
@@ -327,11 +526,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记">
-      《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/1224cbc79a.html" rel="prev" title="RaLiBEV 读书笔记">
+      <i class="fa fa-chevron-left"></i> RaLiBEV 读书笔记
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -409,7 +608,11 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E4%BD%A0"><span class="nav-number">1.</span> <span class="nav-text">欢迎你！</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#less-label-efficient-semantic-segmentation-for-lidar-point-clouds%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#method"><span class="nav-number">1.4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pilot-study"><span class="nav-number">1.4.1.</span> <span class="nav-text">（1）pilot study</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#overview"><span class="nav-number">1.4.2.</span> <span class="nav-text">（2）overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pre-segmantation"><span class="nav-number">1.4.3.</span> <span class="nav-text">（3）pre-segmantation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#annotation-policy-training-labels"><span class="nav-number">1.4.4.</span> <span class="nav-text">（4）Annotation policy &amp;
+training labels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#contrastive-prototype-learning"><span class="nav-number">1.4.5.</span> <span class="nav-text">（5）contrastive prototype
+learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-scan-distillation"><span class="nav-number">1.4.6.</span> <span class="nav-text">（6）multi-scan distillation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -592,6 +795,59 @@ $(document).ready(function() {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
