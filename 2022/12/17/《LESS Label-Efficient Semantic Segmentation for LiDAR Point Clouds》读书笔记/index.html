@@ -23,30 +23,22 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DETR论文精读(eccv20 Transfomer+目标检测) [^9000+stars，very good]: 简介：end-to-end的里程碑意义很大，因为以前的目标检测领域很少有end-to-end的方法，大部分方法都需要一个后处理的操作，即nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based的方法，还是anchor b">
+  <meta name="description" content="《LESS: Label-Efficient Semantic Segmentation for LiDAR Point Clouds》读书笔记 [TOC] 感觉这篇文章标题起的很好hhh，Less is more！论文起个好名字确实重要！ 原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.08064 在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DETR 论文精读">
-<meta property="og:url" content="http://xuzikun.com/2022/11/15/DETR%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记">
+<meta property="og:url" content="http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="DETR论文精读(eccv20 Transfomer+目标检测) [^9000+stars，very good]: 简介：end-to-end的里程碑意义很大，因为以前的目标检测领域很少有end-to-end的方法，大部分方法都需要一个后处理的操作，即nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based的方法，还是anchor b">
+<meta property="og:description" content="《LESS: Label-Efficient Semantic Segmentation for LiDAR Point Clouds》读书笔记 [TOC] 感觉这篇文章标题起的很好hhh，Less is more！论文起个好名字确实重要！ 原文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.08064 在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151158907.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151708839.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151253299.png">
-<meta property="article:published_time" content="2022-11-15T09:09:39.260Z">
-<meta property="article:modified_time" content="2022-12-15T12:05:34.422Z">
+<meta property="article:published_time" content="2022-12-17T02:02:41.345Z">
+<meta property="article:modified_time" content="2022-12-17T02:06:16.756Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="DL">
-<meta property="article:tag" content="3D-Detection">
+<meta property="article:tag" content="Lidar">
+<meta property="article:tag" content="Semantic Segmentation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
 
-<link rel="canonical" href="http://xuzikun.com/2022/11/15/DETR%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -59,7 +51,7 @@
   };
 </script>
 
-  <title>DETR 论文精读 | 小徐的Blog</title>
+  <title>《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记 | 小徐的Blog</title>
   
 
 
@@ -292,7 +284,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/11/15/DETR%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -305,7 +297,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          DETR 论文精读
+          《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记
         </h1>
 
         <div class="post-meta">
@@ -316,23 +308,21 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-15 17:09:39" itemprop="dateCreated datePublished" datetime="2022-11-15T17:09:39+08:00">2022-11-15</time>
+              <time title="创建时间：2022-12-17 10:02:41 / 修改时间：10:06:16" itemprop="dateCreated datePublished" datetime="2022-12-17T10:02:41+08:00">2022-12-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:05:34" itemprop="dateModified" datetime="2022-12-15T20:05:34+08:00">2022-12-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/3D-Detection/" itemprop="url" rel="index"><span itemprop="name">3D-Detection</span></a>
+                  <a href="/categories/Semantic-Segmentation/" itemprop="url" rel="index"><span itemprop="name">Semantic Segmentation</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Semantic-Segmentation/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
                 </span>
             </span>
 
@@ -355,144 +345,52 @@ mjx-container[display="true"] + br {
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer">
-<h1 id="detr 论文精读 eccv20-transfomer 目标检测">DETR 论文精读(eccv20
-Transfomer+ 目标检测)</h1>
-<p>[^9000+stars，very good]:</p>
-<p>简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum
-suppersion，非极大值抑制），无论是 proposal based 的方法，还是 anchor
-based 的方法，还是 anchor
-free 的方法，最后都会生成很多预测的框框。nms 的作用就是去掉这些框框，这些框框也会对模型的调参和部署产生一些影响。而且 nms 这个操作也不是所有硬件都支持的。</p>
-<p>而 DETR 解决了上面提到的这些痛点，既不需要 proposal，也不需要 anchor，直接利用 transfomer 全局建模的能力，把目标检测看成了集合预测的问题，也不会输出那些冗余的框框。把目标检测任务做到了和图像分类一样简单。（nms 和 anchor 的生成这两部分都需要不少的先验知识）</p>
-<span id="more"></span>
+<h1 id="less-label-efficient-semantic-segmentation-for-lidar-point-clouds 读书笔记">《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记</h1>
 <p>[TOC]</p>
+<p><strong style="color:#c00000;">感觉这篇文章标题起的很好 hhh，Less is
+more！论文起个好名字确实重要！</strong></p>
+<p>原文链接：https://arxiv.org/abs/2210.08064</p>
+<p>在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、无监督还是半监督？）没有一个基础的概念的话，可以阅读一下这篇推送：https://mp.weixin.qq.com/s/a1a2-RjMC4IJW6WZVw5iJw</p>
 <h2 id="abstract">Abstract</h2>
-<p>把找到框框转为集合预测的工作，听起来是很合理的设置，但是以往很少有人做的 work。</p>
-<p>把需要先验知识的部分去掉，例如 NMS 和 anchor
-的生成。最后不会出现冗余的框框，只会有一个框框。</p>
-<p>DETR 主要提出了两个新的东西：</p>
-<ol type="1">
-<li><p>一个是新的目标函数，通过二分图匹配的方式，强制模型输出一组独一无二的预测，（每个物体理想状态下也本来就应该生成一个框框）。</p></li>
-<li><p>另外一个贡献就是使用了 transformer 这种 encoder-decoder 的架构，相比于最原始的 transfomer 架构，有两个小细节发生了变化：</p>
-<ol type="1">
-<li><p>一个是在 decoder 的输入部分新加入了一项，也就是文中提到的 learned
-object query，类似 anchor 的意思。</p>
-<p>（给定这些 object query 之后，DETR 就可以把 learned object
-query 和全局图像信息结合一起，通过不停的做注意力操作，从而让模型直接输出最后的一组预测框）</p></li>
-<li><p>串行改为并行</p>
-<p>想法 &amp;&amp; 实效性：并行比串行更合适，并不是检测一个大物体前必须先检测一个小物体，或从左到右检测，我们希望越快越好。</p>
-<p>（这里做出改变的原因主要是最开始的 transformer 的那篇论文的应用对象是 NLP，对于输出要求有自回归的特性，因此设计了掩码的机制，让文本从左到右一点一点输出出来，但是对于我们当前的任务，不需要这种特性，我们是一下子把所有的目标检测的框框输出出来的）。</p></li>
-</ol></li>
-</ol>
-<p>作者认为 DETR 优越的地方：</p>
-<ol type="1">
-<li>简单：不需要特殊的 DL
-library，只要硬件支持 CNN 或者 Transformer，那么就一定支持 DETR</li>
-<li>性能好：在 coco 数据集上，detr 和一个训练非常好的 faster
-RCNN 基线网络取得了差不多的效果，模型内存和速度也和 faster
-RCNN 差不多。但实际上 2020 年的时候，coco 上最好的算法，有着 53 的 ap，而 DETR 只有 44，但是想法实在是太新颖了！</li>
-<li>拓展性能好：在全景分割上的任务也很好。</li>
-</ol>
+<p>Lidar 的点云语义分割任务在自动驾驶中很重要，但是训练很深的网络需要很大的数据集，而标注数据集又很贵。</p>
+<p>所以作者决定使用 Label-Efficient 的方法，使用半 / 弱监督学习（semi/weakly
+supervised learning）并且几乎适用于所有的 3D 语义分割的 backbone。</p>
+<p>具体来说，作者利用户外场景中的几何模式（geometry
+patterns）进行启发式预分割（heuristic
+pre-segmentation），减少人工标注，并与标注过程共同设计学习目标。在学习步骤中，我们利用原型学习（prototype
+learning）来获得更多描述性的点嵌入（point
+embeddings），并使用多扫描蒸馏（multi-scan
+distillation）从时间聚合点云（temporally aggregated point
+clouds）中开发更丰富的语义，以提高单扫描模型的性能。</p>
+<span id="more"></span>
 <h2 id="introduction">Introduction</h2>
-<p>1、目标检测任务：对每一个感兴趣的物体，去预测一些框和物体类别，就是一个集合预测问题</p>
-<p>2、现在大多数好用的目标检测器，都是用间接的方式去处理集合预测问题，</p>
-<p>（1）比如 proposal 方式（如 RCNN 系列工作：faster R-CNN、Mask
-R-CNN、cascade R-CNN），</p>
-<p>（2）anchor 方式（YOLO 系列，focal loss），non-anchor
-based 方法（物体中心点 center net，FCOS）.</p>
-<p>他们都没有直接做集合预测任务，而是设计一个替代（回归、分类）解决目标检测问题。所有这些方法性能受限于后处理操作（NMS），由于用了 anchor 和 NMS 导致检测器都非常复杂(因为会生成许多冗余的框框，也就是文中提到的 near
-duplicate
-predictions, 所以需要加入 nms 和 anchor 进行优化)，最后整个架构变得十分复杂，难以优化和调参</p>
-<p>3、端到端的思想已经在别的很多任务里大范围使用，而且使任务更加简单好用。我们不要先验知识，就是要用一个端到端网络</p>
-<p><strong>detr 流程（训练）：</strong></p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png" alt="image-20221115140514914" style="zoom: 67%;"></p>
-<p>1、CNN 提取特征</p>
-<p>2、特征拉直，送到 encoder-decoder 中，encoder 作用：进一步学习全局信息，为接下来的 decoder，也就是最后出预测框做铺垫。（直观的理解是，使用了 encoder-decoder 之后，图片里面每一个点（特征）和其他的点（特征）就有交互了，这样他就知道了图片中物体的分布，最终的效果就是同一个物体只应该出一个框框，而不是多个。总之，全局的特征有利于移除多余的框框）</p>
-<p>3、decoder 生成框的输出，当你有了图像特征之后，还会有一个 object
-query（限定了你要出多少框），通过 query 和特征在 decoder 里进行自注意力操作，得到输出的框（文中是 100，无论是什么图片都会预测 100 个框）</p>
-<p>4、loss ：二分图匹配，计算 100 个预测的框和 2 个 Ground
-Truth 的框的 matching
-loss，决定 100 个预测框哪两个是独一无二对应到红黄色的 GT 框，匹配的框去算目标检测的 loss。决定好这个匹配关系之后，才会像普通的目标检测一样，去算一个分类的 loss，在算一个 bounding
-box 的 loss。剩下的 98 个没有被匹配成功的框框，就会被标记为背景类，不会参与后面的计算）</p>
-<p><strong>推理</strong></p>
-<p>1、2、3 一致，第四步 loss 不需要，直接在最后的输出上用一个阈值卡一个输出的置信度，置信度比较大（&gt;0.7 的）保留，置信度小于 0.7 的当做背景物体</p>
-<p><strong>结果</strong></p>
-<p>1、detr 对大物体预测很准，归功于 transformer，能进行全局建模（原来使用 anchor 的话就会受限于 anchor 大小）</p>
-<p>2、缺陷：对小物体效果不好（多尺度、多特征，可以提高小物体的检测）</p>
-<p>3、detr 训练很慢，500 个 epoch（coco 大多数模型一般训练几十个 epoch 就行）</p>
+<p>此外，大多数先前的探索倾向于从 <strong style="color:#ff0000;"> 两个独立的角度 </strong> 来解决问题，这在我们的室外环境中可能不太有效。</p>
+<p>具体来说，一个角度是 <strong style="color:#ff0000;"> 提高标注效率 </strong>，该方法采用主动学习[47,55,34]、弱标注[44,54] 和 2D 监督 [53] 来减少标注工作量。另一种视角 <strong style="color:#ff0000;"> 侧重于训练</strong>，其中努力假设给出了部分标签，并设计半 / 弱监督学习算法来利用有限的标签并争取更好的性能[33,60,44,61,20,34,66]。</p>
+<p>本文针对自动驾驶汽车捕获的激光雷达点云，提出了一种新的框架，标签高效语义分割 (LESS)。与以往的工作不同，<strong style="color:#ff0000;"> 我们的方法共同设计了标记过程和模型学习</strong></p>
+<p>我们的协同设计基于两个原则:1)标签步骤旨在提供 <strong style="color:#ff0000;"> 最低限度的监督 </strong>，这适用于最先进的半 / 弱监督分割方法;2) 模型训练步骤可以 <strong style="color:#ff0000;"> 利用标签策略作为先验</strong>，推导出更多的学习目标。</p>
+<p>所提出的方法可以直接适应大多数最先进的激光雷达分割骨干，而不引入任何网络架构变化或部署在机载时额外的计算复杂性。</p>
+<p>总之，我们的贡献主要包括:</p>
+<ol type="1">
+<li>分析室外激光雷达点云的标签高效分割与室内设置的区别，并表明不平衡的类别 <strong style="color:#ff0000;">（长尾问题）</strong> 分布是主要挑战之一。</li>
+<li>利用激光雷达点云独特的几何结构，设计一种 <strong style="color:#ff0000;"> 启发式算法 </strong>，将输入点<strong style="color:#ff0000;"> 预分割 </strong> 成高纯度的连接组件。然后提出了一种定制的标签策略，以利用定制标签和损耗的组件。</li>
+<li>将有益的组件调整为标签高效的 LiDAR 分割，并精心设计一个<strong style="color:#ff0000;">network-agnostic
+pipeline</strong>，实现与完全监督的 on-par 相同的性能。</li>
+<li>在两个大规模自动驾驶数据集上评估拟议的 pipeline，并广泛消融每个模块。</li>
+</ol>
 <h2 id="related-work">Related work</h2>
-<p>作者首先讲了集合预测问题以及之前大家都是用什么样的方法，去解决集合预测的问题。</p>
-<p>第二部分介绍了 transfomer 的经典架构以及 parallel
-decoding 是如何实现的。</p>
-<p>最后介绍了目标检测的相关工作：</p>
-<p>根据初始猜测做预测：</p>
-<p>1、two-stage: 初始猜测是中间的 proposal</p>
-<p>2、one-stage: 初始猜测是 anchor 或物体中心点</p>
-<p>最近有一篇论文做了详细比较，发现他们的性能和刚开始的初始猜测非常相关，怎么做后处理对性能影响至关重要</p>
-<p>怎么后处理：</p>
-<p>1、集合思想（set based
-loss）：可学习的 NMS 方法、关系型网络，可以利用自注意力方法去处理物体之间的联系，得出独一无二的预测，就不需要后处理的步骤（性能较低）</p>
-<p>性能问题解决：人工干预：手工设计的场景特征帮助模型学习，但是 DETR 目标是想让目标检测任务更加简单，不希望用到过多人工先验知识</p>
-<p>2、循环检测器：（之前使用 encoder-decoder 的形式去做目标检测的工作）</p>
-<p>当时大家使用的都是 RNN，transfomer 还没有出来。RNN 都是自回归的模型，时效性很差，性能也不是很好。</p>
-<p>让 detr work 主要原因：transformer。</p>
-<h2 id="the-detr-model">The DETR model</h2>
-<p>分两块：</p>
-<p>1、基于集合的目标函数怎么做，作者如何通过二分图匹配把预测的框和 GT 框连接在一起，算得目标函数</p>
-<p>2、DETR 具体模型架构</p>
-<p>目标函数部分</p>
-<p>detr 模型最后输出是一个 <span style="background:#FFFFBB;"> 固定集合</span>，无论图片是什么，最后都会输出 n 个（本文 n=100）</p>
-<p>问题：detr 每次都会出 100 个输出，但是实际上一个图片的 GT 的 bounding
-box 可能只有几个，如何匹配？如何计算 loss？怎么知道哪个预测框对应 GT 框？</p>
-<p>作者的处理方法就是把这个问题转换为一个二分图匹配的问题。匈牙利算法就是解决二分图匹配问题一个成熟高效的解决方案。</p>
-<p>scipy 包提供的 linear sum
-assignment 可以完成这项工作，输入就是问题的 cost
-matrix，输出就是最优的排列。DETR 论文里：代码也用的 linear sum
-assignment 函数</p>
-<p>a,b,c 看成 100 个预测框，x,y,z 看成 GT 框，损失矩阵未必都是正方形。</p>
-<p>损失矩阵的值应该放些什么？loss 包含两部分：分类 loss、出框的准确度。</p>
-<p>最后就是遍历所有的框框，用得到的 100 个框和 GT 的框去算最后的 loss，然后把计算得到的 loss 放到 cost
-matrix 里面就可以了。然后把 cost
-matrix 带入到匈牙利方法里面，就可以得到二分图匹配的结果。</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png" alt="image-20221115144013312" style="zoom: 33%;"></p>
-<p>作者实际写代码的时候做了两个改动：</p>
-<p>第一个是把第一项的 log 去掉了，以往的目标检测问题往往会带上 log 进行计算，作者这里是为了让前后两部分 loss 有接近的取值空间。</p>
-<p>第二个改动就是第二项采用的不是 L_1 的 loss 而是 L_2 的 loss。这样做是因为 L_1 的 loss 和出框的大小有关系，框越大最后得到的 loss 就容易越大。但是 DETR 用了 transfomer 这样的框架，对大物体很友好，所以特别容易给出大的框框，得到大大的 loss，不易于优化。</p>
-<p>detr 主体网络框架（图 2：图 1 的升级版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png" alt="image-20221115144756426" style="zoom: 80%;"></p>
-<p>真代码（简化版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png" alt="image-20221115145409770" style="zoom: 67%;"></p>
-<h2 id="experiments">Experiments</h2>
-<p>表 1detr 和 faster RCNN 的对比</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png" alt="image-20221115145833980" style="zoom:67%;"></p>
-<p>+ 表示用更好的训练策略(
-是 DETR 使用的 trick，为了公平起见，给之前的模型也用上了，比如使用了 glu
-loss，使用更强的 data agumentation，训练更长的时间
-)把三个模型重新训练一遍</p>
-<p>gflops 参数：每秒进行的浮点运算次数</p>
-<p>gflops 越小，模型越小，跑起来越快？X</p>
-<p>如果更关心速度，比较 fps</p>
-<p><strong>检测效果</strong></p>
-<p>detr 由于使用 transformer 全局建模，没有用 anchor，想检测多大物体就检测多大，所以检测大物体效果较好</p>
-<p>detr 框架太简单，没有多尺度特征，没有 FPN，没有复杂的目标检测头，所以在小目标检测效果不好</p>
-<p>encode 学到的东西：</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151158907.png" alt="image-20221115151158907" style="zoom:67%;"></p>
-<p>decoder 学到的东西：</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151708839.png" alt="image-20221115170750503" style="zoom:67%;"></p>
-<p>encoder 和 decoder 缺一不可，encoder 学习的是全局的特征，尽可能让物体分开，而 decoder 的部分因为前面 encoder 都已经分好了，decoder 就可以把注意力放在学习物体的边缘上，怎么更好的去区分开物体，解决遮挡的问题。</p>
-<p><strong>结论</strong></p>
-<p>objectquery 可视化（n=100，这里只有 20 个）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151253299.png" alt="image-20221115151253299" style="zoom:67%;"></p>
-<p>到底学了什么（绿色代表小的 bounding box，红色代表大的横向 bounding
-box，蓝色代表大的竖向 bounding box）object
-query 和 anchor 有些像，anchor 是提前定一些 bounding
-box，把预测和这些提前定好的 bounding box 对比，object
-query 是可以学习的。</p>
-<p>100 个 object
-query 就像 100 个不同的问问题的人，每个人都有自己问问题的方式，每来一个图片这些人就上去问，如果找到了合适的答案，就把答案（对应的 bounding
-box），如果没找到就返回什么都没有。</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>DETR，好！（用 object
-query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前的 nms 这一步，变成端到端的工作）</p>
+<p>propose a pipeline that
+<strong style="color:#ff0000;">co-designs</strong> the
+<strong style="color:#ff0000;">labeling and the model learning</strong>
+and can <strong style="color:#ff0000;">work with most 3D segmentation
+backbones</strong>.</p>
+<p>an effective approach for bootstrapping labeling and learning from
+<strong style="color:#ff0000;">scratch</strong>. In addition, LESS is
+also <strong style="color:#ff0000;">highly compatible for efficiently
+improving</strong> a performant model.</p>
+<p>文章最后还介绍了一些实验的细节以及结果，如果想复现可以去详细阅读这部分。</p>
 
     </div>
 
@@ -533,7 +431,7 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://xuzikun.com/2022/11/15/DETR%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="DETR 论文精读">http://xuzikun.com/2022/11/15/DETR学习笔记/</a>
+    <a href="http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记">http://xuzikun.com/2022/12/17/《LESS Label-Efficient Semantic Segmentation for LiDAR Point Clouds》读书笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -574,7 +472,8 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/DL/" rel="tag"># DL</a>
-              <a href="/tags/3D-Detection/" rel="tag"># 3D-Detection</a>
+              <a href="/tags/Lidar/" rel="tag"># Lidar</a>
+              <a href="/tags/Semantic-Segmentation/" rel="tag"># Semantic Segmentation</a>
           </div>
 
         
@@ -583,13 +482,10 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/15/%E3%80%8AA%20comprehensive%20survey%20of%20LIDAR-based%203D%20object%20detection%20methods%20with%20deep%20learning%20for%20autonomous%20driving%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="prev" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记">
-      <i class="fa fa-chevron-left"></i> 《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记
+    <a href="/2022/12/15/%E3%80%8ARaLiBEV%20Radar%20and%20LiDAR%20BEV%20Fusion%20Learning%20for%20Anchor%20Box%20Free%20Object%20Detection%20System%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="prev" title="RaLiBEV 读书笔记">
+      <i class="fa fa-chevron-left"></i> RaLiBEV 读书笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/11/17/Pointnet(++)%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Pointnet(++) 学习笔记">
-      Pointnet(++) 学习笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -667,8 +563,9 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#detr%20%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%20eccv20-transfomer%20%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">DETR 论文精读(eccv20
-Transfomer+ 目标检测)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-detr-model"><span class="nav-number">1.4.</span> <span class="nav-text">The DETR model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">1.5.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#less-label-efficient-semantic-segmentation-for-lidar-point-clouds%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.4.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

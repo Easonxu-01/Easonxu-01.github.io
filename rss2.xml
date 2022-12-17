@@ -9,8 +9,56 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Thu, 15 Dec 2022 12:05:20 GMT</pubDate>
+    <pubDate>Sat, 17 Dec 2022 02:06:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记</title>
+      <link>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <guid>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <pubDate>Sat, 17 Dec 2022 02:02:41 GMT</pubDate>
+      
+      <description>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;h1 id=&quot;less-label-efficient-semantic-segmentation-for-lidar-point-clouds读书笔记&quot;&gt;《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记&lt;/h1&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;&lt;strong style=&quot;color:#c00000;&quot;&gt;感觉这篇文章标题起的很好hhh，Less is
+more！论文起个好名字确实重要！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;原文链接：https://arxiv.org/abs/2210.08064&lt;/p&gt;
+&lt;p&gt;在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、无监督还是半监督？）没有一个基础的概念的话，可以阅读一下这篇推送：https://mp.weixin.qq.com/s/a1a2-RjMC4IJW6WZVw5iJw&lt;/p&gt;
+&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;Lidar的点云语义分割任务在自动驾驶中很重要，但是训练很深的网络需要很大的数据集，而标注数据集又很贵。&lt;/p&gt;
+&lt;p&gt;所以作者决定使用Label-Efficient的方法，使用半/弱监督学习（semi/weakly
+supervised learning）并且几乎适用于所有的3D语义分割的backbone。&lt;/p&gt;
+&lt;p&gt;具体来说，作者利用户外场景中的几何模式（geometry
+patterns）进行启发式预分割（heuristic
+pre-segmentation），减少人工标注，并与标注过程共同设计学习目标。在学习步骤中，我们利用原型学习（prototype
+learning）来获得更多描述性的点嵌入（point
+embeddings），并使用多扫描蒸馏（multi-scan
+distillation）从时间聚合点云（temporally aggregated point
+clouds）中开发更丰富的语义，以提高单扫描模型的性能。&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer"><h1 id="less-label-efficient-semantic-segmentation-for-lidar-point-clouds 读书笔记">《LESS:Label-Efficient Semantic Segmentation for LiDAR PointClouds》读书笔记</h1><p>[TOC]</p><p><strong style="color:#c00000;">感觉这篇文章标题起的很好 hhh，Less ismore！论文起个好名字确实重要！</strong></p><p>原文链接：https://arxiv.org/abs/2210.08064</p><p>在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、无监督还是半监督？）没有一个基础的概念的话，可以阅读一下这篇推送：https://mp.weixin.qq.com/s/a1a2-RjMC4IJW6WZVw5iJw</p><h2 id="abstract">Abstract</h2><p>Lidar 的点云语义分割任务在自动驾驶中很重要，但是训练很深的网络需要很大的数据集，而标注数据集又很贵。</p><p>所以作者决定使用 Label-Efficient 的方法，使用半 / 弱监督学习（semi/weaklysupervised learning）并且几乎适用于所有的 3D 语义分割的 backbone。</p><p>具体来说，作者利用户外场景中的几何模式（geometrypatterns）进行启发式预分割（heuristicpre-segmentation），减少人工标注，并与标注过程共同设计学习目标。在学习步骤中，我们利用原型学习（prototypelearning）来获得更多描述性的点嵌入（pointembeddings），并使用多扫描蒸馏（multi-scandistillation）从时间聚合点云（temporally aggregated pointclouds）中开发更丰富的语义，以提高单扫描模型的性能。</p><span id="more"></span><h2 id="introduction">Introduction</h2><p>此外，大多数先前的探索倾向于从 <strong style="color:#ff0000;"> 两个独立的角度 </strong> 来解决问题，这在我们的室外环境中可能不太有效。</p><p>具体来说，一个角度是 <strong style="color:#ff0000;"> 提高标注效率 </strong>，该方法采用主动学习[47,55,34]、弱标注[44,54] 和 2D 监督 [53] 来减少标注工作量。另一种视角 <strong style="color:#ff0000;"> 侧重于训练</strong>，其中努力假设给出了部分标签，并设计半 / 弱监督学习算法来利用有限的标签并争取更好的性能[33,60,44,61,20,34,66]。</p><p>本文针对自动驾驶汽车捕获的激光雷达点云，提出了一种新的框架，标签高效语义分割 (LESS)。与以往的工作不同，<strong style="color:#ff0000;"> 我们的方法共同设计了标记过程和模型学习</strong></p><p>我们的协同设计基于两个原则:1)标签步骤旨在提供 <strong style="color:#ff0000;"> 最低限度的监督 </strong>，这适用于最先进的半 / 弱监督分割方法;2) 模型训练步骤可以 <strong style="color:#ff0000;"> 利用标签策略作为先验</strong>，推导出更多的学习目标。</p><p>所提出的方法可以直接适应大多数最先进的激光雷达分割骨干，而不引入任何网络架构变化或部署在机载时额外的计算复杂性。</p><p>总之，我们的贡献主要包括:</p><ol type="1"><li>分析室外激光雷达点云的标签高效分割与室内设置的区别，并表明不平衡的类别 <strong style="color:#ff0000;">（长尾问题）</strong> 分布是主要挑战之一。</li><li>利用激光雷达点云独特的几何结构，设计一种 <strong style="color:#ff0000;"> 启发式算法 </strong>，将输入点<strong style="color:#ff0000;"> 预分割 </strong> 成高纯度的连接组件。然后提出了一种定制的标签策略，以利用定制标签和损耗的组件。</li><li>将有益的组件调整为标签高效的 LiDAR 分割，并精心设计一个<strong style="color:#ff0000;">network-agnosticpipeline</strong>，实现与完全监督的 on-par 相同的性能。</li><li>在两个大规模自动驾驶数据集上评估拟议的 pipeline，并广泛消融每个模块。</li></ol><h2 id="related-work">Related work</h2><h2 id="conclusion">Conclusion</h2><p>propose a pipeline that<strong style="color:#ff0000;">co-designs</strong> the<strong style="color:#ff0000;">labeling and the model learning</strong>and can <strong style="color:#ff0000;">work with most 3D segmentationbackbones</strong>.</p><p>an effective approach for bootstrapping labeling and learning from<strong style="color:#ff0000;">scratch</strong>. In addition, LESS isalso <strong style="color:#ff0000;">highly compatible for efficientlyimproving</strong> a performant model.</p><p>文章最后还介绍了一些实验的细节以及结果，如果想复现可以去详细阅读这部分。</p>]]></content:encoded>
+      
+      
+      <category domain="http://xuzikun.com/categories/Semantic-Segmentation/">Semantic Segmentation</category>
+      
+      <category domain="http://xuzikun.com/categories/Semantic-Segmentation/Lidar/">Lidar</category>
+      
+      
+      <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      
+      <category domain="http://xuzikun.com/tags/Semantic-Segmentation/">Semantic Segmentation</category>
+      
+      
+      <comments>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>RaLiBEV 读书笔记</title>

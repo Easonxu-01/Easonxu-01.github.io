@@ -233,17 +233,17 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">8</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">6</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">7</span></a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -342,6 +342,122 @@ mjx-container[display="true"] + br {
 <p>虽然现在这里还是 <strong style="color:#00b0f0;"> 冷冷清清</strong>，</p>
 <p>但是之后我会建起一片 <strong style="color:#00b050;"> 茂密的森林</strong>！</p>
 
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小徐">
+      <meta itemprop="description" content="今天珍惜今天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小徐的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">《LESSLabel-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-17 10:02:41 / 修改时间：10:06:16" itemprop="dateCreated datePublished" datetime="2022-12-17T10:02:41+08:00">2022-12-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Semantic-Segmentation/" itemprop="url" rel="index"><span itemprop="name">Semantic Segmentation</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Semantic-Segmentation/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <meta name="referrer" content="no-referrer">
+<h1 id="less-label-efficient-semantic-segmentation-for-lidar-point-clouds读书笔记">《LESS:
+Label-Efficient Semantic Segmentation for LiDAR Point
+Clouds》读书笔记</h1>
+<p>[TOC]</p>
+<p><strong style="color:#c00000;">感觉这篇文章标题起的很好hhh，Less is
+more！论文起个好名字确实重要！</strong></p>
+<p>原文链接：https://arxiv.org/abs/2210.08064</p>
+<p>在阅读这篇文献之前，如果你对点云分割的方法（采用全监督、弱监督、无监督还是半监督？）没有一个基础的概念的话，可以阅读一下这篇推送：https://mp.weixin.qq.com/s/a1a2-RjMC4IJW6WZVw5iJw</p>
+<h2 id="abstract">Abstract</h2>
+<p>Lidar的点云语义分割任务在自动驾驶中很重要，但是训练很深的网络需要很大的数据集，而标注数据集又很贵。</p>
+<p>所以作者决定使用Label-Efficient的方法，使用半/弱监督学习（semi/weakly
+supervised learning）并且几乎适用于所有的3D语义分割的backbone。</p>
+<p>具体来说，作者利用户外场景中的几何模式（geometry
+patterns）进行启发式预分割（heuristic
+pre-segmentation），减少人工标注，并与标注过程共同设计学习目标。在学习步骤中，我们利用原型学习（prototype
+learning）来获得更多描述性的点嵌入（point
+embeddings），并使用多扫描蒸馏（multi-scan
+distillation）从时间聚合点云（temporally aggregated point
+clouds）中开发更丰富的语义，以提高单扫描模型的性能。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1205,20 +1321,20 @@ deep learning for autonomous driving》
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1298,7 +1414,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.7k字</span>
+  <span class="post-count">博客全站共31.7k字</span>
 </div>
         
 <div class="busuanzi-count">
