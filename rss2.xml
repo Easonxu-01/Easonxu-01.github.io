@@ -9,11 +9,11 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Sat, 17 Dec 2022 02:10:25 GMT</pubDate>
+    <pubDate>Sat, 17 Dec 2022 02:17:44 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>[object Object]</title>
+      <title>《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记</title>
       <link>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
       <guid>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
       <pubDate>Sat, 17 Dec 2022 02:02:41 GMT</pubDate>
@@ -51,9 +51,9 @@ clouds）中开发更丰富的语义，以提高单扫描模型的性能。&lt;/
       
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
       
-      <category domain="http://xuzikun.com/tags/Semantic-Segmentation/">Semantic Segmentation</category>
-      
       <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      
+      <category domain="http://xuzikun.com/tags/Semantic-Segmentation/">Semantic Segmentation</category>
       
       
       <comments>http://xuzikun.com/2022/12/17/%E3%80%8ALESS%20Label-Efficient%20Semantic%20Segmentation%20for%20LiDAR%20Point%20Clouds%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
