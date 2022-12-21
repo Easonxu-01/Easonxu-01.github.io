@@ -233,17 +233,17 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">9</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -315,7 +315,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-17 09:10:34" itemprop="dateModified" datetime="2022-11-17T09:10:34+08:00">2022-11-17</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -341,6 +341,135 @@ mjx-container[display="true"] + br {
           <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="欢迎你">欢迎你！</h1>
 <p>虽然现在这里还是 <strong style="color:#00b0f0;"> 冷冷清清</strong>，</p>
 <p>但是之后我会建起一片 <strong style="color:#00b050;"> 茂密的森林</strong>！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/12fb65dca3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="小徐">
+      <meta itemprop="description" content="今天珍惜今天">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小徐的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12fb65dca3.html" class="post-title-link" itemprop="url">《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-21 15:01:11 / 修改时间：15:22:01" itemprop="dateCreated datePublished" datetime="2022-12-21T15:01:11+08:00">2022-12-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DL/Segmentation/" itemprop="url" rel="index"><span itemprop="name">Segmentation</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer">
+<h1 id="cylindrical-and-asymmetrical-3d-convolution-networks-for-lidar-segmentation 读书笔记">《Cylindrical
+and Asymmetrical 3D Convolution Networks for LiDAR
+Segmentation》读书笔记</h1>
+<p>[TOC]</p>
+<p>这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖析 Cylinder3D 这项工作。</p>
+<p>“学会使用 Cylinder3D，看这一篇就够了！”</p>
+<h2 id="论文解读">论文解读</h2>
+<h3 id="abstract-introduction">abstract &amp; introduction</h3>
+<p>在大规模行车场景分割的问题下，对于点云的处理方法通常是将点云投影到 <strong style="color:#ff0000;">2 维空间</strong>，然后使用 2D 卷积进行处理，但是这样做会<strong style="color:#ff0000;"> 忽视点云的 3D 拓扑和几何关系 </strong>。自然的想法是利用<strong style="color:#ff0000;">3D 体素划分和卷积网络</strong>，然而对于室外场景，由于<strong style="color:#ff0000;"> 点云稀疏性（sparsity）和密度可变性（varying
+density）</strong>，这种方法效果并不太好。</p>
+<p>受上面研究的启发，作者提出了一种用于户外激光雷达分割的新框架，该框架设计了 <strong style="color:#ff0000;"> 圆柱形分割（cylinder
+partition）和非对称三维卷积网络（asymmetry 3D convolution
+network）</strong>，以探索三维几何模式，同时保持这些固有特性。</p>
+<p><strong style="color:#00b0f0;">即本文最重要的两个创新点</strong></p>
+<p>此外，还引入逐点细化模块（point-wise refinement
+module）来降低有损体素标签编码的干扰。</p>
+<p><strong style="color:#00b0f0;">这一点其实没有在代码中体现出来，作者没有 release 这一部分的代码</strong></p>
+<p>本文的工作在 SemanticKITTI 和 nuScenes 两个大规模数据集上评估了所提出的模型。在 SemanticKITTI 排行榜上获得了第一名，并且在 nuScenes 上以 4% 的显著优势超过了现有的方法。此外，所提出的三维框架对激光雷达全景分割和激光雷达三维检测也有很好的推广意义。</p>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png" alt="image-20221221152120889">
+<figcaption aria-hidden="true">image-20221221152120889</figcaption>
+</figure>
+<ul>
+<li>柱坐标系划分：离原点越远，点云越稀疏，但是 cell 的体积是较大的，保证了 cell 中点云分布的均匀性</li>
+<li>非对称三维卷积网络：通过增强水平核和垂直核来匹配驾驶场景中物体的点分布，增强了点云稀疏性的鲁棒性</li>
+<li>point-wise refinement
+module：柱划分导致不同类别的点在相同的 cell 中，导致 cell 的 label 在编码时出现信息损失，由此提出 point-wise 增强模块
+<ul>
+<li>point-wise 模块：在论文中有提及思想，但是没有具体的工程代码</li>
+</ul></li>
+<li>本文贡献：
+<ul>
+<li>将室外 LiDER 场景分割从二维映射转为 3 维结构，考虑了点云固有的两个特性</li>
+<li>提出一种新的框架，利用圆柱体分割和非对称卷积网络克服点云固有特性</li>
+<li>在两个数据集上达到 sota</li>
+</ul></li>
+</ul>
+<h2 id="代码运行">代码运行</h2>
+<h2 id="代码解析">代码解析</h2>
 
       
     </div>
@@ -403,7 +532,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-17 10:02:41 / 修改时间：15:40:49" itemprop="dateCreated datePublished" datetime="2022-12-17T10:02:41+08:00">2022-12-17</time>
+              <time title="创建时间：2022-12-17 10:02:41 / 修改时间：19:24:50" itemprop="dateCreated datePublished" datetime="2022-12-17T10:02:41+08:00">2022-12-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -517,10 +646,16 @@ clouds）中开发更丰富的语义，以提高单扫描模型的性能。</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-15 17:16:59 / 修改时间：20:05:20" itemprop="dateCreated datePublished" datetime="2022-12-15T17:16:59+08:00">2022-12-15</time>
+              <time title="创建时间：2022-12-15 17:16:59" itemprop="dateCreated datePublished" datetime="2022-12-15T17:16:59+08:00">2022-12-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -635,7 +770,7 @@ RobotCar（ORR）数据集展示了所提出方法的优越性能。实验表明
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:06:27" itemprop="dateModified" datetime="2022-12-15T20:06:27+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -757,7 +892,7 @@ Tech</p></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 15:34:12" itemprop="dateModified" datetime="2022-12-15T15:34:12+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -858,7 +993,7 @@ Tech</p></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:06:18" itemprop="dateModified" datetime="2022-12-15T20:06:18+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -962,7 +1097,7 @@ Transformer》. arXiv, 2022年10月27日. doi: <a target="_blank" rel="noopener"
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:06:05" itemprop="dateModified" datetime="2022-12-15T20:06:05+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1071,7 +1206,7 @@ feature）、分割（point-wise feature）等。</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:05:34" itemprop="dateModified" datetime="2022-12-15T20:05:34+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1178,7 +1313,7 @@ free的方法，最后都会生成很多预测的框框。nms的作用就是去�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 20:06:37" itemprop="dateModified" datetime="2022-12-15T20:06:37+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1321,20 +1456,20 @@ deep learning for autonomous driving》
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1414,7 +1549,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共32.4k字</span>
+  <span class="post-count">博客全站共33.1k字</span>
 </div>
         
 <div class="busuanzi-count">

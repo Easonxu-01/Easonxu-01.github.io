@@ -9,8 +9,40 @@
     <atom:link href="http://xuzikun.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>今天珍惜今天</description>
-    <pubDate>Sat, 17 Dec 2022 07:40:49 GMT</pubDate>
+    <pubDate>Wed, 21 Dec 2022 07:22:01 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记</title>
+      <link>http://xuzikun.com/2022/12fb65dca3.html</link>
+      <guid>http://xuzikun.com/2022/12fb65dca3.html</guid>
+      <pubDate>Wed, 21 Dec 2022 07:01:11 GMT</pubDate>
+      
+        
+        
+      <description>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;meta name=&quot;referrer&quot; content=&quot;no-referre</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer"><h1 id="cylindrical-and-asymmetrical-3d-convolution-networks-for-lidar-segmentation 读书笔记">《Cylindricaland Asymmetrical 3D Convolution Networks for LiDARSegmentation》读书笔记</h1><p>[TOC]</p><p>这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖析 Cylinder3D 这项工作。</p><p>“学会使用 Cylinder3D，看这一篇就够了！”</p><h2 id="论文解读">论文解读</h2><h3 id="abstract-introduction">abstract &amp; introduction</h3><p>在大规模行车场景分割的问题下，对于点云的处理方法通常是将点云投影到 <strong style="color:#ff0000;">2 维空间</strong>，然后使用 2D 卷积进行处理，但是这样做会<strong style="color:#ff0000;"> 忽视点云的 3D 拓扑和几何关系 </strong>。自然的想法是利用<strong style="color:#ff0000;">3D 体素划分和卷积网络</strong>，然而对于室外场景，由于<strong style="color:#ff0000;"> 点云稀疏性（sparsity）和密度可变性（varyingdensity）</strong>，这种方法效果并不太好。</p><p>受上面研究的启发，作者提出了一种用于户外激光雷达分割的新框架，该框架设计了 <strong style="color:#ff0000;"> 圆柱形分割（cylinderpartition）和非对称三维卷积网络（asymmetry 3D convolutionnetwork）</strong>，以探索三维几何模式，同时保持这些固有特性。</p><p><strong style="color:#00b0f0;">即本文最重要的两个创新点</strong></p><p>此外，还引入逐点细化模块（point-wise refinementmodule）来降低有损体素标签编码的干扰。</p><p><strong style="color:#00b0f0;">这一点其实没有在代码中体现出来，作者没有 release 这一部分的代码</strong></p><p>本文的工作在 SemanticKITTI 和 nuScenes 两个大规模数据集上评估了所提出的模型。在 SemanticKITTI 排行榜上获得了第一名，并且在 nuScenes 上以 4% 的显著优势超过了现有的方法。此外，所提出的三维框架对激光雷达全景分割和激光雷达三维检测也有很好的推广意义。</p><figure><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png" alt="image-20221221152120889"><figcaption aria-hidden="true">image-20221221152120889</figcaption></figure><ul><li>柱坐标系划分：离原点越远，点云越稀疏，但是 cell 的体积是较大的，保证了 cell 中点云分布的均匀性</li><li>非对称三维卷积网络：通过增强水平核和垂直核来匹配驾驶场景中物体的点分布，增强了点云稀疏性的鲁棒性</li><li>point-wise refinementmodule：柱划分导致不同类别的点在相同的 cell 中，导致 cell 的 label 在编码时出现信息损失，由此提出 point-wise 增强模块<ul><li>point-wise 模块：在论文中有提及思想，但是没有具体的工程代码</li></ul></li><li>本文贡献：<ul><li>将室外 LiDER 场景分割从二维映射转为 3 维结构，考虑了点云固有的两个特性</li><li>提出一种新的框架，利用圆柱体分割和非对称卷积网络克服点云固有特性</li><li>在两个数据集上达到 sota</li></ul></li></ul><h2 id="代码运行">代码运行</h2><h2 id="代码解析">代码解析</h2>]]></content:encoded>
+      
+      
+      <category domain="http://xuzikun.com/categories/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/categories/DL/Segmentation/">Segmentation</category>
+      
+      
+      <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/Segmentation/">Segmentation</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      
+      
+      <comments>http://xuzikun.com/2022/12fb65dca3.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>《LESS：Label-Efficient Semantic Segmentation for LiDAR Point Clouds》 读书笔记</title>
@@ -49,9 +81,9 @@ clouds）中开发更丰富的语义，以提高单扫描模型的性能。&lt;/
       <category domain="http://xuzikun.com/categories/Semantic-Segmentation/Lidar/">Lidar</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
-      
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       <category domain="http://xuzikun.com/tags/Semantic-Segmentation/">Semantic Segmentation</category>
       
@@ -91,11 +123,11 @@ RobotCar（ORR）数据集展示了所提出方法的优越性能。实验表明
       <category domain="http://xuzikun.com/categories/3D-Detection/Lidar/">Lidar</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      <category domain="http://xuzikun.com/tags/DL/">DL</category>
       
       <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
       
-      <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       
       <comments>http://xuzikun.com/2022/1224cbc79a.html#disqus_thread</comments>
@@ -139,9 +171,9 @@ Tech&lt;/p&gt;&lt;/li&gt;
       <category domain="http://xuzikun.com/categories/DL/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
-      
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
       
       
       <comments>http://xuzikun.com/2022/125f7f840a.html#disqus_thread</comments>
@@ -196,11 +228,11 @@ Transformer》. arXiv, 2022年10月27日. doi: &lt;a href=&quot;https://doi.org/
       <category domain="http://xuzikun.com/categories/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
+      <category domain="http://xuzikun.com/tags/DL/">DL</category>
       
       <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
       
-      <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       
       <comments>http://xuzikun.com/2022/11e816de48.html#disqus_thread</comments>
@@ -266,9 +298,9 @@ free的方法，最后都会生成很多预测的框框。nms的作用就是去�
       <category domain="http://xuzikun.com/categories/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
-      
       <category domain="http://xuzikun.com/tags/DL/">DL</category>
+      
+      <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
       
       
       <comments>http://xuzikun.com/2022/116ffb9e7c.html#disqus_thread</comments>
@@ -304,9 +336,9 @@ deep learning for autonomous driving》
       <category domain="http://xuzikun.com/categories/3D-Detection/">3D-Detection</category>
       
       
-      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
-      
       <category domain="http://xuzikun.com/tags/3D-Detection/">3D-Detection</category>
+      
+      <category domain="http://xuzikun.com/tags/Lidar/">Lidar</category>
       
       
       <comments>http://xuzikun.com/2022/119da5d215.html#disqus_thread</comments>
