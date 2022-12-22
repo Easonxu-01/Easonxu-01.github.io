@@ -31,8 +31,14 @@
 <meta property="og:description" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记 [TOC] 这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212212201070.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212212205355.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220745063.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220903451.webp">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220839245.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220842768.png">
 <meta property="article:published_time" content="2022-12-21T07:01:11.623Z">
-<meta property="article:modified_time" content="2022-12-21T07:22:01.472Z">
+<meta property="article:modified_time" content="2022-12-22T01:10:20.752Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="DL">
 <meta property="article:tag" content="Segmentation">
@@ -310,10 +316,16 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-21 15:01:11 / 修改时间：15:22:01" itemprop="dateCreated datePublished" datetime="2022-12-21T15:01:11+08:00">2022-12-21</time>
+              <time title="创建时间：2022-12-21 15:01:11" itemprop="dateCreated datePublished" datetime="2022-12-21T15:01:11+08:00">2022-12-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-22 09:10:20" itemprop="dateModified" datetime="2022-12-22T09:10:20+08:00">2022-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -352,7 +364,7 @@ and Asymmetrical 3D Convolution Networks for LiDAR
 Segmentation》读书笔记</h1>
 <p>[TOC]</p>
 <p>这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖析 Cylinder3D 这项工作。</p>
-<p>“学会使用 Cylinder3D，看这一篇就够了！”</p>
+<p><strong style="color:#00b050;">“学会使用 Cylinder3D，看这一篇就够了！”</strong></p>
 <h2 id="论文解读">论文解读</h2>
 <h3 id="abstract-introduction">abstract &amp; introduction</h3>
 <p>在大规模行车场景分割的问题下，对于点云的处理方法通常是将点云投影到 <strong style="color:#ff0000;">2 维空间</strong>，然后使用 2D 卷积进行处理，但是这样做会<strong style="color:#ff0000;"> 忽视点云的 3D 拓扑和几何关系 </strong>。自然的想法是利用<strong style="color:#ff0000;">3D 体素划分和卷积网络</strong>，然而对于室外场景，由于<strong style="color:#ff0000;"> 点云稀疏性（sparsity）和密度可变性（varying
@@ -384,6 +396,185 @@ module：柱划分导致不同类别的点在相同的 cell 中，导致 cell �
 <li>在两个数据集上达到 sota</li>
 </ul></li>
 </ul>
+<h3 id="related-works">related works</h3>
+<h4 id="室内点云分割">室内点云分割</h4>
+<p>主流方法有两种：</p>
+<ul>
+<li>基于直接点云数据的，eg：PointNet</li>
+<li>基于聚类算法提取层次特征的</li>
+</ul>
+<p>室内点云分割的方法依赖于点云分布的 <strong> 均匀性 </strong> 和<strong>密度不变性</strong>，不适用于直接迁移到室外点云分割</p>
+<h4 id="室外点云分割">室外点云分割</h4>
+<ul>
+<li>现有的主流方法主要是集中在将 3D 点云转换为 2D 网格，在此基础上使用 2D 卷积，eg：SqueezeSeg，Darknet，rangenet++</li>
+<li>这种 3D-to-2D 的方法会损失点云的 3D 几何特征</li>
+</ul>
+<h4 id="d 体素划分">3D 体素划分</h4>
+<p>这种方法将点云分割成一个个体素，可以保持点云的 3D 特性，也能适用 3D 卷积神经网络。</p>
+<p><strong style="color:#ff0000;">值得注意的是，以往工作都忽视了点云的稀疏性和密度不均匀性。</strong></p>
+<h3 id="methodology">Methodology</h3>
+<h4 id="框架"><strong>框架</strong></h4>
+<ul>
+<li>step1 ：圆柱体素划分，将点云划分到每一个柱体 cell</li>
+<li>step2：应用非对称 3D 卷积网络，得到 cell-label 的输出</li>
+<li>step3：使用 point-wise module，细化 cell-label（代码无体现）</li>
+</ul>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212212201070.png" alt="image-20221221220125957">
+<figcaption aria-hidden="true">image-20221221220125957</figcaption>
+</figure>
+<h4 id="cylindrical-partition">Cylindrical Partition</h4>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212212205355.png" alt="image-20221221220558263">
+<figcaption aria-hidden="true">image-20221221220558263</figcaption>
+</figure>
+<ul>
+<li>流程：
+<ul>
+<li>首先将点从笛卡尔坐标系转移到圆柱坐标系，即从 (x,y,z) 转换为 (ρ,θ,z)
+。其中 ρ 为 x-y
+轴到原点的距离，θ为 x 轴到 y 轴的角度。然后进行柱坐标系划分（split）（在 cylinder 坐标中，越远的 region，cell 越大。）</li>
+<li>最后这些 cylinder grid representation 被喂入 MLP-based pointnet
+中获得 的 point-wise
+特征。根据分区的情况重新划分 MLP 得到的特征，生成圆柱体特征</li>
+</ul></li>
+<li>输入：点云数据</li>
+<li>输出：3D 柱体划分（C ∗ H ∗ W ∗ L
+），C 是特征维度，H 是半径，W 是方位角度，L 是高度</li>
+<li>划分方式：划分成个数为 480 ∗ 360 ∗ 32 的体素，这三个数字分别表示 半径
+* 角度 * 高度</li>
+</ul>
+<h4 id="asymmetrical-3d-convolution-network">Asymmetrical 3D Convolution
+Network</h4>
+<p>motivation：得到了柱坐标中的 voxel，接下来就是 Encoder 和 Decoder 的过程，柱坐标中的 voxel 表示形式了普通的三维栅格没有区别，都是规则化的八连接，所以就可以直接用 3D
+Sparse Convolution。那么实际上也是这么做的。只不过具体实现上，不是用
+3x3x3 的卷积核，而是使用非对称的卷积形式，也就是 Asymmetrical Residual
+Block。</p>
+<p>由于驾驶场景点云进行特定物体形状分布，包括汽车、卡车、公共汽车、摩托车和其他立方体物体，模型旨在遵循这一观察来增强标准
+3D
+卷积的表示能力。此外，这种不对称的残差块也大大降低了传统三维卷积核的计算成本。</p>
+<p>3 个关键模块：</p>
+<ul>
+<li>非对称上采样（AU）</li>
+<li>非对称下采样（AD）</li>
+<li>基于上下文的维度分解（DDCM）</li>
+</ul>
+<p>见 figure2 下半部分</p>
+<blockquote>
+<p>具体来说，使用内核 =3×1×3 的卷积，然后再使用 1×3×3 的卷积，相当于滑动两层网络，其接受域与内核 =3×3×3 的三维卷积相同，但它的计算成本比输出滤波器数量相同的 3×3×3 卷积少 33%。</p>
+</blockquote>
+<p>如图所示，Asymmetry Residual Block 将 3×3×3 卷积拆分成 1×3×3 和 3×1×3
+两种，这样作有两个好处：</p>
+<ul>
+<li>由于待检测的目标都接近于长方体，这种卷积形式更有利于提取 <strong> 长方体样式的特征</strong>；</li>
+<li>减少 33% 的计算量，类似 Depth-wise Convolution；</li>
+</ul>
+<p>提出的非对称残差块（A）是下采样块（D）和上采样块（U）的基本组成部分。</p>
+<ul>
+<li>对于下采样块（D），它包括一个非对称残差块和一个跨度 =2 的三维卷积来执行下采样。</li>
+<li>上采样块（U）包含了低级别的特征，并通过非对称残差块（A）处理融合后的特征。</li>
+</ul>
+<h5 id="asymmetrical-residual-block">Asymmetrical Residual Block</h5>
+<p>不对称残差块受[40,
+11]中观察和结论的启发，不对称残差块加强了水平和垂直内核，匹配驾驶场景中物体的点分布，明确地使内核的骨架强大，从而增强室外激光雷达点云对稀疏性的鲁棒性。作者以汽车和摩托车为例来展示图
+5 中的非对称残差块。</p>
+<ul>
+<li>非对称残差模块增强了水平和垂直的 kernel，增加鲁棒性</li>
+<li>将非对称残差块和上下采样块进行堆叠，得到了非对称卷积网络</li>
+</ul>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220745063.png" alt="image-20221222074535970" style="zoom:67%;"></p>
+<h5 id="dimension-decomposition-based-context-modeling">Dimension-Decomposition
+based Context Modeling</h5>
+<p>Motivation：由于情境的种类繁多（对于三维空间，其情境因点云而异，应具有较大的多样性），情境张量应是高秩的
+high-rank [27，28]，以有足够的容量来编码情境信息。由于情境的 high-rank
+特性，为这种情境特征建模需要巨大的成本，尤其是在三维空间。</p>
+<p>所以利用矩阵分解的思想（the high-rank matrix decomposition
+theory,），将其用 height，width，depth 三维的 low-rank
+向量来权重化表达，由此设计如图 4. 中的 DDCM 模块。</p>
+<ul>
+<li>用 3 个 rank-1 的 kernel 得到低等级的特征，然后聚合得到高级特征。这是因为直接得到高级的上下文特征需要耗费很大的算力和内存，因此采用低级特征聚合成高级特征的方式。</li>
+</ul>
+<figure>
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220903451.webp" alt="img">
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>该模块将三个方向的特征计算各自的权重，然后与原始特征作权重化整合。输出的特征用于最终的预测，预测输出是
+Voxel-based，维度为 Class×H×W×L
+。其实就是在得到 voxel-wise 的 feature 之后，预测 voxel-wise 的 label 之前，加个这种卷积。</p>
+<h4 id="point-wise-refinement-module">Point-wise Refinement Module</h4>
+<p><strong>块点结合检测方法的优势分析：</strong>区块检测的方法是目前常用的方法，但不管是基于立方体还是基于圆柱体的方法都有一个不可避免的缺点，即不同类别的点可能被划分到同一个 cell 中，这将导致导致信息的丢失而影响精度。而采用块点结合的方式，能够有效的缓解错误 cell-label 编码的干扰，而提高识别的精度。</p>
+<p><strong>具体的实现方式：</strong>首先，基于 point-voxel 映射表将 voxel-wise 特征投影到 point-wise。然后，point-wise 模块将
+3D 卷积网络前后的点特征作为输入，并将它们融合在一起以细化输出。</p>
+<p>在得到 voxel-wise 的 feature 之后，可以映射回 point-wise，这块我在代码中没有找到，简单的话可以认为是复制过去，复杂的话可以用插值的方法。然后再使用 MLP 得到 point-wise 的 label。</p>
+<p>point-wise refinement module
+并没有 release 出来，作者说这部分作用很小</p>
+<p>Q：
+那我有个问题，如果不做 point-wise 的话，voxel 的分辨率是小于 point-wise 的。那岂不是输出的点的数量是少于原始点云的。那怎么上传结果啊</p>
+<p>A：我看了下代码，作者就是简单地让一个 voxel 里所有点的 label，都等于这个 voxel 的 label。
+具体实现在 train_cylinder_asym.py 的 104-105 行：predict_labels[count,
+val_grid[count][:, 0], val_grid[count][:, 1], val_grid[count][:,
+2]]。</p>
+<p>这里，predict_labels 是 vexel-wise label，中括号里的索引是 point-wise
+grid index， 输出的就是 point-wise label 了，数量也就变成了 point
+size 了</p>
+<p>获得 voxel 的 label，然后将当前 voxel 中的所有点预测为统一个 label</p>
+<ul>
+<li>基于分割的方法会对每一个 cell 都打上一个 label，但由于分割时会把不同种类的点分在同一个 cell，导致 label 不标准，基于此引入 point-wise
+module 进行矫正</li>
+<li>过程
+<ul>
+<li>基于 point-voxel 映射图将 voxel 特征投影到点上</li>
+<li>然后此模块将进入 3D 卷积网络前后的点特征融合起来作为输入来细化 label</li>
+</ul></li>
+<li>无对应代码</li>
+</ul>
+<h4 id="目标函数">目标函数</h4>
+<ul>
+<li>包含两个部分：lovasz loss 和 交叉熵 loss</li>
+<li>优化器：Adam</li>
+<li>学习率：1e-3</li>
+</ul>
+<h3 id="实验部分">实验部分</h3>
+<p>在本节中，我们首先提供详细的实验设置，然后评估所提出的方法在两个大规模的数据集，即 SemanticKITTI 和 nuScenes。此外，还进行了广泛的消融研究来验证每个成分。最后将该方法推广到 Li-
+DAR 全景分割和三维检测中，验证了该方法的可扩展性和泛化能力。</p>
+<h4 id="dataset-and-metric">Dataset and Metric</h4>
+<h5 id="semantic-kitti">semantic KITTI：</h5>
+<ul>
+<li>包括语义分割和场景分割</li>
+<li>有 22 个序列，00-10 是训练集，11-21 是测试集，08 可以用作验证集</li>
+<li>进行整合后留下 19 个类别用于训练和验证</li>
+</ul>
+<h5 id="nuscenes">nuScenes：</h5>
+<ul>
+<li>32 束激光雷达传感器采集了 20 秒内的 1000 个场景，总帧数为 40000，采样频率为 20Hz</li>
+<li>整合后有 16 个种类用于语义分割</li>
+</ul>
+<h5 id="evaluation-metric 评价指标">Evaluation Metric（评价指标）：</h5>
+<ul>
+<li>mIoU：mean intersection-over-union</li>
+<li>表达式：IoU= <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.158ex;" xmlns="http://www.w3.org/2000/svg" width="14.031ex" height="3.142ex" role="img" focusable="false" viewBox="0 -877 6201.5 1388.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(2586.3,394) scale(0.707)"><g data-mml-node="mi"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mi" transform="translate(704,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-370.3) scale(0.707)"><g data-mml-node="mi"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">（</text></g><g data-mml-node="mi" transform="translate(1000,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mi" transform="translate(1704,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(2455,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(3233,0)"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g><g data-mml-node="mi" transform="translate(3982,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(4733,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(5511,0)"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g><g data-mml-node="mi" transform="translate(6260,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(7148,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">）</text></g></g><rect width="5961.5" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></li>
+</ul>
+<h4 id="ablation-studies 消融实验">ablation studies（消融实验）</h4>
+<p><strong style="color:#00b0f0;">作者做的表很好，两张表说明一切。</strong></p>
+<h5 id="网络的影响">网络的影响</h5>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220839245.png" alt="image-20221222083946070" style="zoom:80%;"></p>
+<h5 id="非对称卷积的影响">非对称卷积的影响</h5>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220842768.png" alt="image-20221222084203701" style="zoom:80%;"></p>
+<h5 id="泛化实验">泛化实验</h5>
+<p><strong style="color:#00b0f0;">之后作者为了证明他提出的东西确实很好，好在本质上，又在全景分割和 3D 目标检测方向做了一些实验，有点像
+transfomer
+的原论文（或是 DETR 的原论文）记不太清了 hhhh。不过作者已经进行了消融实验，文章结构已经完整了。</strong></p>
+<blockquote>
+<p>其实 Cylinder 这种表示很早就有了，3D sparse
+Convolution 也早就有了。而发现柱坐标的 voxel 和普通三维栅格的表示相同，都可以用 3D
+sparse Convolution 做特征提取这个问题就很妙。</p>
+</blockquote>
+<blockquote>
+<p>本文的效果也许可以再次证明，sparse
+convolution 的特征提取效果可能要优于 point-based network 的方法的。</p>
+</blockquote>
+<h3 id="conclusion">conclusion</h3>
+<p>牛🐂！</p>
 <h2 id="代码运行">代码运行</h2>
 <h2 id="代码解析">代码解析</h2>
 
@@ -560,7 +751,9 @@ module：柱划分导致不同类别的点在相同的 cell 中，导致 cell �
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cylindrical-and-asymmetrical-3d-convolution-networks-for-lidar-segmentation%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">《Cylindrical
 and Asymmetrical 3D Convolution Networks for LiDAR
-Segmentation》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.1.</span> <span class="nav-text">论文解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract-introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">abstract &amp; introduction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C"><span class="nav-number">1.2.</span> <span class="nav-text">代码运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">代码解析</span></a></li></ol></li></ol></div>
+Segmentation》读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.1.</span> <span class="nav-text">论文解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract-introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">abstract &amp; introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related-works"><span class="nav-number">1.1.2.</span> <span class="nav-text">related works</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A4%E5%86%85%E7%82%B9%E4%BA%91%E5%88%86%E5%89%B2"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">室内点云分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A4%E5%A4%96%E7%82%B9%E4%BA%91%E5%88%86%E5%89%B2"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">室外点云分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d%20%E4%BD%93%E7%B4%A0%E5%88%92%E5%88%86"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">3D 体素划分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#methodology"><span class="nav-number">1.1.3.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cylindrical-partition"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Cylindrical Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asymmetrical-3d-convolution-network"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">Asymmetrical 3D Convolution
+Network</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#asymmetrical-residual-block"><span class="nav-number">1.1.3.3.1.</span> <span class="nav-text">Asymmetrical Residual Block</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dimension-decomposition-based-context-modeling"><span class="nav-number">1.1.3.3.2.</span> <span class="nav-text">Dimension-Decomposition
+based Context Modeling</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#point-wise-refinement-module"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">Point-wise Refinement Module</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E9%83%A8%E5%88%86"><span class="nav-number">1.1.4.</span> <span class="nav-text">实验部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dataset-and-metric"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">Dataset and Metric</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#semantic-kitti"><span class="nav-number">1.1.4.1.1.</span> <span class="nav-text">semantic KITTI：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nuscenes"><span class="nav-number">1.1.4.1.2.</span> <span class="nav-text">nuScenes：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#evaluation-metric%20%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-number">1.1.4.1.3.</span> <span class="nav-text">Evaluation Metric（评价指标）：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ablation-studies%20%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">ablation studies（消融实验）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.1.4.2.1.</span> <span class="nav-text">网络的影响</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8D%B7%E7%A7%AF%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.1.4.2.2.</span> <span class="nav-text">非对称卷积的影响</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.1.4.2.3.</span> <span class="nav-text">泛化实验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">1.1.5.</span> <span class="nav-text">conclusion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C"><span class="nav-number">1.2.</span> <span class="nav-text">代码运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">代码解析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -669,8 +862,28 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共33.1k字</span>
+  <span class="post-count">博客全站共35.5k字</span>
 </div>
+
+<div>
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("08/10/2020 00:00:00");//在此处修改你的建站时间
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "已运行 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+  </div>
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
