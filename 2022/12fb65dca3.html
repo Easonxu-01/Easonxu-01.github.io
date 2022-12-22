@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记 [TOC] 这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖">
+  <meta name="description" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记 [TOC] 这篇文章很重要，2020的SOTA，直到2022也有很多工作将其作为baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇blog会尽量从论文和代码两个角度，深度剖析Cylind">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记">
 <meta property="og:url" content="http://xuzikun.com/2022/12fb65dca3.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记 [TOC] 这篇文章很重要，2020 的 SOTA，直到 2022 也有很多工作将其作为 baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇 blog 会尽量从论文和代码两个角度，深度剖">
+<meta property="og:description" content="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记 [TOC] 这篇文章很重要，2020的SOTA，直到2022也有很多工作将其作为baseline，而且文章贴出了代码。有很大的可能我的毕设也会在这项工作上进行改进。这篇blog会尽量从论文和代码两个角度，深度剖析Cylind">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212212201070.png">
@@ -38,11 +38,11 @@
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220839245.png">
 <meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212220842768.png">
 <meta property="article:published_time" content="2022-12-21T07:01:11.623Z">
-<meta property="article:modified_time" content="2022-12-22T01:10:20.752Z">
+<meta property="article:modified_time" content="2022-12-22T03:53:58.151Z">
 <meta property="article:author" content="小徐">
 <meta property="article:tag" content="DL">
-<meta property="article:tag" content="Segmentation">
 <meta property="article:tag" content="Lidar">
+<meta property="article:tag" content="Segmentation">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png">
 
@@ -324,7 +324,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-22 09:10:20" itemprop="dateModified" datetime="2022-12-22T09:10:20+08:00">2022-12-22</time>
+                <time title="修改时间：2022-12-22 11:53:58" itemprop="dateModified" datetime="2022-12-22T11:53:58+08:00">2022-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -372,11 +372,16 @@ density）</strong>，这种方法效果并不太好。</p>
 <p>受上面研究的启发，作者提出了一种用于户外激光雷达分割的新框架，该框架设计了 <strong style="color:#ff0000;"> 圆柱形分割（cylinder
 partition）和非对称三维卷积网络（asymmetry 3D convolution
 network）</strong>，以探索三维几何模式，同时保持这些固有特性。</p>
+<blockquote>
 <p><strong style="color:#00b0f0;">即本文最重要的两个创新点</strong></p>
+</blockquote>
 <p>此外，还引入逐点细化模块（point-wise refinement
 module）来降低有损体素标签编码的干扰。</p>
+<blockquote>
 <p><strong style="color:#00b0f0;">这一点其实没有在代码中体现出来，作者没有 release 这一部分的代码</strong></p>
+</blockquote>
 <p>本文的工作在 SemanticKITTI 和 nuScenes 两个大规模数据集上评估了所提出的模型。在 SemanticKITTI 排行榜上获得了第一名，并且在 nuScenes 上以 4% 的显著优势超过了现有的方法。此外，所提出的三维框架对激光雷达全景分割和激光雷达三维检测也有很好的推广意义。</p>
+<span id="more"></span>
 <figure>
 <img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212211521209.png" alt="image-20221221152120889">
 <figcaption aria-hidden="true">image-20221221152120889</figcaption>
@@ -446,7 +451,7 @@ module：柱划分导致不同类别的点在相同的 cell 中，导致 cell �
 </ul>
 <h4 id="asymmetrical-3d-convolution-network">Asymmetrical 3D Convolution
 Network</h4>
-<p>motivation：得到了柱坐标中的 voxel，接下来就是 Encoder 和 Decoder 的过程，柱坐标中的 voxel 表示形式了普通的三维栅格没有区别，都是规则化的八连接，所以就可以直接用 3D
+<p>motivation：得到了柱坐标中的 voxel，接下来就是 Encoder 和 Decoder 的过程。柱坐标中的 voxel 表示形式了普通的三维栅格没有区别，都是规则化的八连接，所以就可以直接用 3D
 Sparse Convolution。那么实际上也是这么做的。只不过具体实现上，不是用
 3x3x3 的卷积核，而是使用非对称的卷积形式，也就是 Asymmetrical Residual
 Block。</p>
@@ -459,7 +464,7 @@ Block。</p>
 <li>非对称下采样（AD）</li>
 <li>基于上下文的维度分解（DDCM）</li>
 </ul>
-<p>见 figure2 下半部分</p>
+<p>具体结构见 figure2 下半部分</p>
 <blockquote>
 <p>具体来说，使用内核 =3×1×3 的卷积，然后再使用 1×3×3 的卷积，相当于滑动两层网络，其接受域与内核 =3×3×3 的三维卷积相同，但它的计算成本比输出滤波器数量相同的 3×3×3 卷积少 33%。</p>
 </blockquote>
@@ -658,8 +663,8 @@ convolution 的特征提取效果可能要优于 point-based network 的方法�
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/DL/" rel="tag"># DL</a>
-              <a href="/tags/Segmentation/" rel="tag"># Segmentation</a>
               <a href="/tags/Lidar/" rel="tag"># Lidar</a>
+              <a href="/tags/Segmentation/" rel="tag"># Segmentation</a>
           </div>
 
         

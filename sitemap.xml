@@ -158,7 +158,7 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/Segmentation/</loc>
+    <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -172,7 +172,7 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
+    <loc>http://xuzikun.com/tags/Segmentation/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -209,13 +209,6 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/DL/</loc>
-    <lastmod>2022-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -223,7 +216,7 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/Semantic-Segmentation/</loc>
+    <loc>http://xuzikun.com/categories/DL/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -237,7 +230,7 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/Semantic-Segmentation/Lidar/</loc>
+    <loc>http://xuzikun.com/categories/Semantic-Segmentation/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -251,14 +244,21 @@
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/%E8%AE%BA%E6%96%87/</loc>
+    <loc>http://xuzikun.com/categories/3D-Detection/Lidar/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/3D-Detection/Lidar/</loc>
+    <loc>http://xuzikun.com/categories/Semantic-Segmentation/Lidar/</loc>
+    <lastmod>2022-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/categories/%E8%AE%BA%E6%96%87/</loc>
     <lastmod>2022-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
