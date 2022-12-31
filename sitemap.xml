@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xuzikun.com/2022/121ff43dbc.html</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xuzikun.com/2022/12fb65dca3.html</loc>
     
     <lastmod>2022-12-22</lastmod>
@@ -130,71 +139,78 @@
 
   <url>
     <loc>http://xuzikun.com/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>http://xuzikun.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://xuzikun.com/tags/DL/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/tags/3D-Detection/</loc>
-    <lastmod>2022-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuzikun.com/tags/Lidar%EF%BC%8C3D-Detection/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/tags/%E6%AC%A2%E8%BF%8E/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/Lidar/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <loc>http://xuzikun.com/tags/Lidar%EF%BC%8C3D-Detection/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/tags/Segmentation/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuzikun.com/tags/Semantic-Segmentation/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <loc>http://xuzikun.com/tags/Lidar/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/tags/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/tags/Semantic-Segmentation/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -202,64 +218,64 @@
 
   
   <url>
-    <loc>http://xuzikun.com/categories/3D-Detection/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://xuzikun.com/categories/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <loc>http://xuzikun.com/categories/3D-Detection/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/categories/DL/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/categories/DL/Segmentation/</loc>
-    <lastmod>2022-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuzikun.com/categories/Semantic-Segmentation/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/categories/DL/3D-Detection/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/categories/3D-Detection/Lidar/</loc>
-    <lastmod>2022-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://xuzikun.com/categories/Semantic-Segmentation/Lidar/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://xuzikun.com/categories/%E8%AE%BA%E6%96%87/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/categories/Semantic-Segmentation/</loc>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://xuzikun.com/categories/Semantic-Segmentation/Lidar/</loc>
+    <lastmod>2022-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

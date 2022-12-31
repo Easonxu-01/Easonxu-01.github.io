@@ -23,30 +23,34 @@
     var CONFIG = {"hostname":"xuzikun.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DETR论文精读(eccv20 Transfomer+目标检测) [^9000+stars，very good]: 简介：end-to-end的里程碑意义很大，因为以前的目标检测领域很少有end-to-end的方法，大部分方法都需要一个后处理的操作，即nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based的方法，还是anchor b">
+  <meta name="description" content="2022年终总结 2022年马上就要结束啦~！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DETR 论文精读">
-<meta property="og:url" content="http://xuzikun.com/2022/116ffb9e7c.html">
+<meta property="og:title" content="2022 年终总结">
+<meta property="og:url" content="http://xuzikun.com/2022/121ff43dbc.html">
 <meta property="og:site_name" content="小徐的Blog">
-<meta property="og:description" content="DETR论文精读(eccv20 Transfomer+目标检测) [^9000+stars，very good]: 简介：end-to-end的里程碑意义很大，因为以前的目标检测领域很少有end-to-end的方法，大部分方法都需要一个后处理的操作，即nms（non-maxinum suppersion，非极大值抑制），无论是 proposal based的方法，还是anchor b">
+<meta property="og:description" content="2022年终总结 2022年马上就要结束啦~！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151158907.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151708839.png">
-<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151253299.png">
-<meta property="article:published_time" content="2022-11-15T09:09:39.260Z">
-<meta property="article:modified_time" content="2022-12-17T11:24:50.723Z">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311412516.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311414915.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311417410.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311417588.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311420369.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311422151.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311428559.png">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311449780.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311545168.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311555395.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311604212.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311555823.jpg">
+<meta property="og:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311442266.jpg">
+<meta property="article:published_time" content="2022-12-31T02:41:18.731Z">
+<meta property="article:modified_time" content="2022-12-31T08:32:38.426Z">
 <meta property="article:author" content="小徐">
-<meta property="article:tag" content="DL">
-<meta property="article:tag" content="3D-Detection">
+<meta property="article:tag" content="年终总结">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png">
+<meta name="twitter:image" content="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311412516.jpg">
 
-<link rel="canonical" href="http://xuzikun.com/2022/116ffb9e7c.html">
+<link rel="canonical" href="http://xuzikun.com/2022/121ff43dbc.html">
 
 
 <script id="page-configurations">
@@ -59,7 +63,7 @@
   };
 </script>
 
-  <title>DETR 论文精读 | 小徐的Blog</title>
+  <title>2022 年终总结 | 小徐的Blog</title>
   
 
 
@@ -292,7 +296,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/116ffb9e7c.html">
+    <link itemprop="mainEntityOfPage" href="http://xuzikun.com/2022/121ff43dbc.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -305,7 +309,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          DETR 论文精读
+          2022 年终总结
         </h1>
 
         <div class="post-meta">
@@ -316,23 +320,17 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-15 17:09:39" itemprop="dateCreated datePublished" datetime="2022-11-15T17:09:39+08:00">2022-11-15</time>
+              <time title="创建时间：2022-12-31 10:41:18 / 修改时间：16:32:38" itemprop="dateCreated datePublished" datetime="2022-12-31T10:41:18+08:00">2022-12-31</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-17 19:24:50" itemprop="dateModified" datetime="2022-12-17T19:24:50+08:00">2022-12-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/3D-Detection/" itemprop="url" rel="index"><span itemprop="name">3D-Detection</span></a>
+                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
                 </span>
             </span>
 
@@ -355,144 +353,52 @@ mjx-container[display="true"] + br {
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><meta name="referrer" content="no-referrer">
-<h1 id="detr 论文精读 eccv20-transfomer 目标检测">DETR 论文精读(eccv20
-Transfomer+ 目标检测)</h1>
-<p>[^9000+stars，very good]:</p>
-<p>简介：end-to-end 的里程碑意义很大，因为以前的目标检测领域很少有 end-to-end 的方法，大部分方法都需要一个后处理的操作，即 nms（non-maxinum
-suppersion，非极大值抑制），无论是 proposal based 的方法，还是 anchor
-based 的方法，还是 anchor
-free 的方法，最后都会生成很多预测的框框。nms 的作用就是去掉这些框框，这些框框也会对模型的调参和部署产生一些影响。而且 nms 这个操作也不是所有硬件都支持的。</p>
-<p>而 DETR 解决了上面提到的这些痛点，既不需要 proposal，也不需要 anchor，直接利用 transfomer 全局建模的能力，把目标检测看成了集合预测的问题，也不会输出那些冗余的框框。把目标检测任务做到了和图像分类一样简单。（nms 和 anchor 的生成这两部分都需要不少的先验知识）</p>
+<h1 id="年终总结">2022 年终总结</h1>
+<p>2022 年马上就要结束啦~！</p>
 <span id="more"></span>
-<p>[TOC]</p>
-<h2 id="abstract">Abstract</h2>
-<p>把找到框框转为集合预测的工作，听起来是很合理的设置，但是以往很少有人做的 work。</p>
-<p>把需要先验知识的部分去掉，例如 NMS 和 anchor
-的生成。最后不会出现冗余的框框，只会有一个框框。</p>
-<p>DETR 主要提出了两个新的东西：</p>
-<ol type="1">
-<li><p>一个是新的目标函数，通过二分图匹配的方式，强制模型输出一组独一无二的预测，（每个物体理想状态下也本来就应该生成一个框框）。</p></li>
-<li><p>另外一个贡献就是使用了 transformer 这种 encoder-decoder 的架构，相比于最原始的 transfomer 架构，有两个小细节发生了变化：</p>
-<ol type="1">
-<li><p>一个是在 decoder 的输入部分新加入了一项，也就是文中提到的 learned
-object query，类似 anchor 的意思。</p>
-<p>（给定这些 object query 之后，DETR 就可以把 learned object
-query 和全局图像信息结合一起，通过不停的做注意力操作，从而让模型直接输出最后的一组预测框）</p></li>
-<li><p>串行改为并行</p>
-<p>想法 &amp;&amp; 实效性：并行比串行更合适，并不是检测一个大物体前必须先检测一个小物体，或从左到右检测，我们希望越快越好。</p>
-<p>（这里做出改变的原因主要是最开始的 transformer 的那篇论文的应用对象是 NLP，对于输出要求有自回归的特性，因此设计了掩码的机制，让文本从左到右一点一点输出出来，但是对于我们当前的任务，不需要这种特性，我们是一下子把所有的目标检测的框框输出出来的）。</p></li>
-</ol></li>
-</ol>
-<p>作者认为 DETR 优越的地方：</p>
-<ol type="1">
-<li>简单：不需要特殊的 DL
-library，只要硬件支持 CNN 或者 Transformer，那么就一定支持 DETR</li>
-<li>性能好：在 coco 数据集上，detr 和一个训练非常好的 faster
-RCNN 基线网络取得了差不多的效果，模型内存和速度也和 faster
-RCNN 差不多。但实际上 2020 年的时候，coco 上最好的算法，有着 53 的 ap，而 DETR 只有 44，但是想法实在是太新颖了！</li>
-<li>拓展性能好：在全景分割上的任务也很好。</li>
-</ol>
-<h2 id="introduction">Introduction</h2>
-<p>1、目标检测任务：对每一个感兴趣的物体，去预测一些框和物体类别，就是一个集合预测问题</p>
-<p>2、现在大多数好用的目标检测器，都是用间接的方式去处理集合预测问题，</p>
-<p>（1）比如 proposal 方式（如 RCNN 系列工作：faster R-CNN、Mask
-R-CNN、cascade R-CNN），</p>
-<p>（2）anchor 方式（YOLO 系列，focal loss），non-anchor
-based 方法（物体中心点 center net，FCOS）.</p>
-<p>他们都没有直接做集合预测任务，而是设计一个替代（回归、分类）解决目标检测问题。所有这些方法性能受限于后处理操作（NMS），由于用了 anchor 和 NMS 导致检测器都非常复杂(因为会生成许多冗余的框框，也就是文中提到的 near
-duplicate
-predictions, 所以需要加入 nms 和 anchor 进行优化)，最后整个架构变得十分复杂，难以优化和调参</p>
-<p>3、端到端的思想已经在别的很多任务里大范围使用，而且使任务更加简单好用。我们不要先验知识，就是要用一个端到端网络</p>
-<p><strong>detr 流程（训练）：</strong></p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925228.png" alt="image-20221115140514914" style="zoom: 67%;"></p>
-<p>1、CNN 提取特征</p>
-<p>2、特征拉直，送到 encoder-decoder 中，encoder 作用：进一步学习全局信息，为接下来的 decoder，也就是最后出预测框做铺垫。（直观的理解是，使用了 encoder-decoder 之后，图片里面每一个点（特征）和其他的点（特征）就有交互了，这样他就知道了图片中物体的分布，最终的效果就是同一个物体只应该出一个框框，而不是多个。总之，全局的特征有利于移除多余的框框）</p>
-<p>3、decoder 生成框的输出，当你有了图像特征之后，还会有一个 object
-query（限定了你要出多少框），通过 query 和特征在 decoder 里进行自注意力操作，得到输出的框（文中是 100，无论是什么图片都会预测 100 个框）</p>
-<p>4、loss ：二分图匹配，计算 100 个预测的框和 2 个 Ground
-Truth 的框的 matching
-loss，决定 100 个预测框哪两个是独一无二对应到红黄色的 GT 框，匹配的框去算目标检测的 loss。决定好这个匹配关系之后，才会像普通的目标检测一样，去算一个分类的 loss，在算一个 bounding
-box 的 loss。剩下的 98 个没有被匹配成功的框框，就会被标记为背景类，不会参与后面的计算）</p>
-<p><strong>推理</strong></p>
-<p>1、2、3 一致，第四步 loss 不需要，直接在最后的输出上用一个阈值卡一个输出的置信度，置信度比较大（&gt;0.7 的）保留，置信度小于 0.7 的当做背景物体</p>
-<p><strong>结果</strong></p>
-<p>1、detr 对大物体预测很准，归功于 transformer，能进行全局建模（原来使用 anchor 的话就会受限于 anchor 大小）</p>
-<p>2、缺陷：对小物体效果不好（多尺度、多特征，可以提高小物体的检测）</p>
-<p>3、detr 训练很慢，500 个 epoch（coco 大多数模型一般训练几十个 epoch 就行）</p>
-<h2 id="related-work">Related work</h2>
-<p>作者首先讲了集合预测问题以及之前大家都是用什么样的方法，去解决集合预测的问题。</p>
-<p>第二部分介绍了 transfomer 的经典架构以及 parallel
-decoding 是如何实现的。</p>
-<p>最后介绍了目标检测的相关工作：</p>
-<p>根据初始猜测做预测：</p>
-<p>1、two-stage: 初始猜测是中间的 proposal</p>
-<p>2、one-stage: 初始猜测是 anchor 或物体中心点</p>
-<p>最近有一篇论文做了详细比较，发现他们的性能和刚开始的初始猜测非常相关，怎么做后处理对性能影响至关重要</p>
-<p>怎么后处理：</p>
-<p>1、集合思想（set based
-loss）：可学习的 NMS 方法、关系型网络，可以利用自注意力方法去处理物体之间的联系，得出独一无二的预测，就不需要后处理的步骤（性能较低）</p>
-<p>性能问题解决：人工干预：手工设计的场景特征帮助模型学习，但是 DETR 目标是想让目标检测任务更加简单，不希望用到过多人工先验知识</p>
-<p>2、循环检测器：（之前使用 encoder-decoder 的形式去做目标检测的工作）</p>
-<p>当时大家使用的都是 RNN，transfomer 还没有出来。RNN 都是自回归的模型，时效性很差，性能也不是很好。</p>
-<p>让 detr work 主要原因：transformer。</p>
-<h2 id="the-detr-model">The DETR model</h2>
-<p>分两块：</p>
-<p>1、基于集合的目标函数怎么做，作者如何通过二分图匹配把预测的框和 GT 框连接在一起，算得目标函数</p>
-<p>2、DETR 具体模型架构</p>
-<p>目标函数部分</p>
-<p>detr 模型最后输出是一个 <span style="background:#FFFFBB;"> 固定集合</span>，无论图片是什么，最后都会输出 n 个（本文 n=100）</p>
-<p>问题：detr 每次都会出 100 个输出，但是实际上一个图片的 GT 的 bounding
-box 可能只有几个，如何匹配？如何计算 loss？怎么知道哪个预测框对应 GT 框？</p>
-<p>作者的处理方法就是把这个问题转换为一个二分图匹配的问题。匈牙利算法就是解决二分图匹配问题一个成熟高效的解决方案。</p>
-<p>scipy 包提供的 linear sum
-assignment 可以完成这项工作，输入就是问题的 cost
-matrix，输出就是最优的排列。DETR 论文里：代码也用的 linear sum
-assignment 函数</p>
-<p>a,b,c 看成 100 个预测框，x,y,z 看成 GT 框，损失矩阵未必都是正方形。</p>
-<p>损失矩阵的值应该放些什么？loss 包含两部分：分类 loss、出框的准确度。</p>
-<p>最后就是遍历所有的框框，用得到的 100 个框和 GT 的框去算最后的 loss，然后把计算得到的 loss 放到 cost
-matrix 里面就可以了。然后把 cost
-matrix 带入到匈牙利方法里面，就可以得到二分图匹配的结果。</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925428.png" alt="image-20221115144013312" style="zoom: 33%;"></p>
-<p>作者实际写代码的时候做了两个改动：</p>
-<p>第一个是把第一项的 log 去掉了，以往的目标检测问题往往会带上 log 进行计算，作者这里是为了让前后两部分 loss 有接近的取值空间。</p>
-<p>第二个改动就是第二项采用的不是 L_1 的 loss 而是 L_2 的 loss。这样做是因为 L_1 的 loss 和出框的大小有关系，框越大最后得到的 loss 就容易越大。但是 DETR 用了 transfomer 这样的框架，对大物体很友好，所以特别容易给出大的框框，得到大大的 loss，不易于优化。</p>
-<p>detr 主体网络框架（图 2：图 1 的升级版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151925397.png" alt="image-20221115144756426" style="zoom: 80%;"></p>
-<p>真代码（简化版）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151926792.png" alt="image-20221115145409770" style="zoom: 67%;"></p>
-<h2 id="experiments">Experiments</h2>
-<p>表 1detr 和 faster RCNN 的对比</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115145833980.png" alt="image-20221115145833980" style="zoom:67%;"></p>
-<p>+ 表示用更好的训练策略(
-是 DETR 使用的 trick，为了公平起见，给之前的模型也用上了，比如使用了 glu
-loss，使用更强的 data agumentation，训练更长的时间
-)把三个模型重新训练一遍</p>
-<p>gflops 参数：每秒进行的浮点运算次数</p>
-<p>gflops 越小，模型越小，跑起来越快？X</p>
-<p>如果更关心速度，比较 fps</p>
-<p><strong>检测效果</strong></p>
-<p>detr 由于使用 transformer 全局建模，没有用 anchor，想检测多大物体就检测多大，所以检测大物体效果较好</p>
-<p>detr 框架太简单，没有多尺度特征，没有 FPN，没有复杂的目标检测头，所以在小目标检测效果不好</p>
-<p>encode 学到的东西：</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151158907.png" alt="image-20221115151158907" style="zoom:67%;"></p>
-<p>decoder 学到的东西：</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202211151708839.png" alt="image-20221115170750503" style="zoom:67%;"></p>
-<p>encoder 和 decoder 缺一不可，encoder 学习的是全局的特征，尽可能让物体分开，而 decoder 的部分因为前面 encoder 都已经分好了，decoder 就可以把注意力放在学习物体的边缘上，怎么更好的去区分开物体，解决遮挡的问题。</p>
-<p><strong>结论</strong></p>
-<p>objectquery 可视化（n=100，这里只有 20 个）</p>
-<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img_lx_win/image-20221115151253299.png" alt="image-20221115151253299" style="zoom:67%;"></p>
-<p>到底学了什么（绿色代表小的 bounding box，红色代表大的横向 bounding
-box，蓝色代表大的竖向 bounding box）object
-query 和 anchor 有些像，anchor 是提前定一些 bounding
-box，把预测和这些提前定好的 bounding box 对比，object
-query 是可以学习的。</p>
-<p>100 个 object
-query 就像 100 个不同的问问题的人，每个人都有自己问问题的方式，每来一个图片这些人就上去问，如果找到了合适的答案，就把答案（对应的 bounding
-box），如果没找到就返回什么都没有。</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>DETR，好！（用 object
-query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前的 nms 这一步，变成端到端的工作）</p>
+<p>最近经常在网上看到大家感叹这是一年的最后几天了，但我对每年新旧更替的感知其实都不太强烈，今年 6 月份填党员转正材料的时候，我还把日期都写成了 2021 年开头 hhh😂。</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311412516.jpg" style="zoom:33%;"></p>
+<p>但是无论如何，一年都要结束了。今天下午学校官微对我进行了一个采访（好像获得知行奖学金的人都会采访一遍，我正好被排到了今年最后一天👀），采访时被问到的一些问题，是促使我下定决心动手写今日份随想的直接原因。而且这一年，貌似在我人生中也格外重要，所以今天的随想，类似 <strong> 年终总结</strong>hhh。</p>
+<p>2022 年最初的比较重要的事情发生在寒假，人生第一次体验不在家过春节，第一次不在家过生日🙃。在国家体育馆当冬奥会志愿者，可能是我的人生至今参与过的最盛大的活动，也结识了不少新朋友，留下了一段难忘的回忆。当志愿者的日子里，我真的体验到了 <strong>“为人民服务”</strong> 是什么感觉。不过 yysy，其实这段经历，在保研面试的时候，是最最 nobody
+care 的部分 hhh，不过对我而言它十分重要，也十分新奇。</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311414915.jpg" style="zoom:33%;"></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311417410.jpg" style="zoom: 25%;"></p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311417588.jpg" style="zoom: 25%;"></p>
+<p>之后开学进入了大三下学期，这个学期是我认为整个大学四年我最 <strong> 摆</strong>的一个学期 hhh。网课是一个原因，另一方面觉得之前参加了足够多的科研竞赛，保研加分已经满了，所以这个学期除了车队的工作，一点点🤏参加其他竞赛的欲望都没有😂。唯一做好的就是保持学习成绩，静静地等待最后保研的过程来临。</p>
+<p>提到保研，5-9 月应该是大学四年中我最最焦虑最最痛苦的阶段了。过程真是一波三折🙃，在遭遇到失利的时候，我想过放弃，甚至有过一些危险的想法。所幸我有一些真正的 <strong> 好朋友 </strong>，他们在这个阶段不断的鼓励我开导我，我能感受到他们是真的希望我收获到自己想要的结果的。无比的感谢他们，没有他们中的任何一个人，可能我都走不完这段过程。<strong> 多谢 </strong> 这些好朋友们！</p>
+<p>所幸最终还是收获了这个阶段我能找到的局部最优解。我和不少朋友都谈过，我其实唯一的希望就是找一个人非常 nice, 能和我做朋友的导师，学术水平当然越高越好 hhh，但这不是我考虑的第一因素。拿到的 5 个 offer 里面，<strong>少兵老师 </strong> 是最后一个出结果的，少兵老师也是第一个我联系的，决定要我的老师 hhh，有点循环的味道在里面！我真的太喜欢少兵老师了，疯狂给他打 call！！！Ｏ(≧∇≦)Ｏ少兵老师身上有很多值得我学习的地方，感觉上辈子一定是做过什么大善事，这辈子读博才能遇见这么 nice 的老师 hhh。（ps：本来打算放一张俺导的帅照的，但是感觉没问过他，不太礼貌也怕他害羞 hhh）</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311420369.jpg" style="zoom: 15%;"></p>
+<p><strong>“梅先菊后何须较，好似人生各有时”</strong>，这是保研阶段我最深的一点感悟。</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311422151.jpg"></p>
+<p>这段时间还有一个重要的发现，就是 <strong> 云流兄</strong>。多谢云流兄陪我度过无数个焦虑不安的夜晚，让我的心能稍微平静一些。在穿越阿里中线的一期视频里面（链接：【骑行流浪西藏半年，今天出发前往新疆，夜晚在荒野中的废弃羊圈里扎营】https://www.bilibili.com/video/BV1Y94y1U7GF?vd_source=c79029179eb238e0c877b7c614ff0bf9），云流兄的满分作文我都快能全文背诵了 hhh:</p>
+<blockquote>
+<p>“真实的生活无论是在哪里，都是枯燥乏味的。很多人的生活，今天都是昨天的重复，包括我也一样。其实，每种生活方式最终都会回归平凡，只有平淡才是生活的本质。其实说实在的，就是你对一个事情，如果你的期待值太高，到时候你收获的就只有失望，那么如果你保持一种平常心呢，你就可以走的更长久。对我来说骑行呢就是一种普通的生活方式，它有别于一般人朝九晚五上班，但这也只是一种生活方式而已，我从来不提理想啊梦想啊信仰啊这些假大空的东西，我也从来不想提什么诗与远方这样的空洞的词汇，所以说有些朋友说羡慕我这样的生活，那大可不必。”</p>
+</blockquote>
+<p>希望云流兄这个冬天在东北骑行一切顺利，也希望他真的能做到“踏遍千山人未老”！</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311428559.png" alt="image-20221231142843241" style="zoom: 50%;"></p>
+<p>保研之后，就是提前来清华这边 <strong> 搬砖</strong>。感觉这段时间自己的提升很大，提升速度也很快，结识了很多优秀的同学，做着自己喜欢的事情，研究自己想研究的东西，每天都度过的很有意义。这段时间还在网上听了很多优秀的老师的课程，包括李宏毅 / 沐神等等 hhh。我发现和真正优秀的人共处，会给你一种平静，坚定，自信的力量。“与善人居，如入芝兰之室，久而自芳矣”，希望未来我也会成为这样能给别人带来力量的人。（放一张俺滴工位图 hhh）</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311449780.jpg" style="zoom:33%;"></p>
+<p>在这期间，还有一件事情比较重要，就是评上了学校的最高荣誉——<strong>知行奖学金</strong>。在本科入学以后，前三年的每场知行奖学金我都会去听。坐在台下听的时候，当然也希望未来自己有机会站到这个舞台上，把我的故事讲给大家听。但真到学院推选我去评这个的时候，压力山大 hhh。我觉得我的性格很像猫，除非万不得已，都希望自己躲在没人关注没人看得见的地方，安静的过自己的生活。所以很惭愧的讲，最开始我去参评主要是为了 2 万的奖学金，对这份荣誉反而没有那么看重。但是全程走完这个过程以后，还是有一些新的感悟的。也感谢整个过程中，不断给我提供帮助的朋友们！</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311545168.jpg" style="zoom:25%;"></p>
+<p>这段时间钢蹦也永远地离开我了。钢蹦是一只很可爱的猫咪，在我们家一共待了不到三年的时间，给我们带来了很多欢乐。从心底讲，我一直觉得我不是一个称职的主人，因为我只能给它提供基础的生活保障，而在它需要我想来找我玩的时候，我往往会因为手上正在忙的事情，忽略掉它的情感需求。希望到了喵星，它生活的比在地球更加快乐。</p>
+<figure class="half">
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311555395.jpg" width="250">
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311604212.jpg" width="250">
+<img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311555823.jpg" width="250">
+</figure>
+<p>最后是北京疫情变严重，没有办法去科建，被迫提前回家的一段时间。感觉这段时间整个社会很 <strong> 混乱</strong>，我的生活也混乱，感情也混乱，思想也混乱。在混乱无序的阶段中，人想抓住一点有序的东西，想抓住自己想要的结果其实是很难的。这个时候，Eason 开演唱会了 hhh！虽然只能线上看，但是每场的吹水 part 其实是帮我走出混乱的灵丹妙药:</p>
+<blockquote>
+<p>“Fear and dreams 其实都是未发生的事情，未发生别当真”，</p>
+<p>“Past is what is past, now 才是最重要的！”，</p>
+<p>“很多时候我们都是越想越怕，不要想不要讲，只去做，你就不怕了”，</p>
+<p>“最紧要，是这一刻，也最真实”，</p>
+<p>“多谢你们，希望你们开心”……</p>
+</blockquote>
+<p>肥陈 2023 一定要来内地开演唱会😭😭😭！！！</p>
+<p><img src="https://gitee.com/easonxu01/blogimg/raw/master/img/202212311442266.jpg" style="zoom:33%;"></p>
+<p>以上，就是 2022 这一年我想记住的事情。对我来讲，这一年是非常幸运的一年，我想实现的事情基本上都做成了。在人生过去的 22 年里，我的运气一直不错，但是我知道 <strong>“好运气”</strong> 这种东西肯定不会一直在我身上。</p>
+<p>如果你问我，对新的一年有什么期望的吗？每年过生日的时候我会许一次愿，每年的愿望也都差不多，大体就是希望我的家人和好朋友们新的一年平安喜乐~。今年肯定会换一种同义表述的，因为愿望说出来就不灵了 hhh。我许愿很少对自己有什么祝福，因为一方面人不能太贪心，太贪心就容易什么都得不到；另一方面，不管有没有祝福，我自己都会一如既往的走好自己人生的路，目前来看我的人生还一直都处在正轨上 hhh。</p>
+<p>如果你能看到这里，那你一定在我每年的祝福名单上了，祝你元旦快乐！</p>
 
     </div>
 
@@ -533,7 +439,7 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://xuzikun.com/2022/116ffb9e7c.html" title="DETR 论文精读">http://xuzikun.com/2022/116ffb9e7c.html</a>
+    <a href="http://xuzikun.com/2022/121ff43dbc.html" title="2022 年终总结">http://xuzikun.com/2022/121ff43dbc.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -573,8 +479,7 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/DL/" rel="tag"># DL</a>
-              <a href="/tags/3D-Detection/" rel="tag"># 3D-Detection</a>
+              <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag"># 年终总结</a>
           </div>
 
         
@@ -583,13 +488,10 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/119da5d215.html" rel="prev" title="《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记">
-      <i class="fa fa-chevron-left"></i> 《A comprehensive survey of LIDAR-based 3D object detection methods with deep learning for autonomous driving》读书笔记
+    <a href="/2022/12fb65dca3.html" rel="prev" title="《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记">
+      <i class="fa fa-chevron-left"></i> 《Cylindrical and Asymmetrical 3D Convolution Networks for LiDAR Segmentation》读书笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/114e0dafe6.html" rel="next" title="Pointnet(++) 学习笔记">
-      Pointnet(++) 学习笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -667,8 +569,7 @@ query 代替了之前生成 anchor 的机制，用二分图匹配替代了之前
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#detr%20%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%20eccv20-transfomer%20%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">DETR 论文精读(eccv20
-Transfomer+ 目标检测)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-detr-model"><span class="nav-number">1.4.</span> <span class="nav-text">The DETR model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">1.5.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">2022 年终总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
